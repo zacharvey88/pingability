@@ -8,8 +8,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
+  --font-display: var(--font-outfit);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +23,80 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.font-display {
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 600;
+}
+
+.font-sans {
+  font-family: var(--font-space-grotesk), sans-serif;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace;
+}
+
+/* Custom cursor for booking buttons only */
+.booking-cursor {
+  cursor: url('/tt-bat-pointer.png'), pointer;
+}
+
+/* Pingability brand color scheme */
+:root {
+  --primary-blue: #05325c;
+  --secondary-blue: #1ac2ab;
+  --light-blue: #e6f7f5;
+  --accent-blue: #1ac2ab;
+  --brand-teal: #1ac2ab;
+  --brand-dark: #05325c;
+}
+
+/* Form input styling */
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280 !important;
+  opacity: 1;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Select dropdown styling */
+select {
+  color: #6b7280;
+}
+
+select:focus {
+  color: #000000;
+}
+
+select option {
+  color: #000000;
+}
+
+select option:disabled {
+  color: #6b7280 !important;
+}
+
+/* Hide scrollbar for testimonials */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
