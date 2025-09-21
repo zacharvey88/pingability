@@ -7,7 +7,6 @@ import { ArrowDown, MapPin, Clock, Users } from 'lucide-react'
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState(false)
   
   const { scrollYProgress } = useScroll({
