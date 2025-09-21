@@ -21,14 +21,14 @@ export default function Hero() {
     const video = videoRef.current
     if (video) {
       const handleLoadedData = () => {
-        setVideoLoaded(true)
+        console.log('Video loaded successfully')
       }
       const handleError = (e: Event) => {
         console.error('Video failed to load:', e)
         setVideoError(true)
       }
       const handleCanPlay = () => {
-        setVideoLoaded(true)
+        console.log('Video can start playing')
       }
       
       // Only add listeners once

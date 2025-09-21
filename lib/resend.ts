@@ -57,7 +57,7 @@ export const sendContactEmail = async (formData: {
           </div>
         </div>
       `,
-      reply_to: email,
+      replyTo: email,
     })
 
     if (error) {
