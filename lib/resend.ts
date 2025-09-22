@@ -1,8 +1,8 @@
-import { Resend } from 'resend'
+// import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// const resend = new Resend(process.env.RESEND_API_KEY)
 
-export { resend }
+// export { resend }
 
 // Email templates
 export const sendContactEmail = async (formData: {
@@ -13,6 +13,11 @@ export const sendContactEmail = async (formData: {
   contactMethod?: string
   hearAbout?: string
 }) => {
+  // TODO: Uncomment when Resend API key is available
+  console.log('Contact email would be sent:', formData)
+  return { id: 'mock-email-id' }
+  
+  /* 
   const { name, email, phone, message, contactMethod, hearAbout } = formData
 
   try {
@@ -70,6 +75,7 @@ export const sendContactEmail = async (formData: {
     console.error('Email sending error:', error)
     throw error
   }
+  */
 }
 
 export const sendBookingConfirmationEmail = async (bookingData: {
@@ -79,6 +85,11 @@ export const sendBookingConfirmationEmail = async (bookingData: {
   totalAmount: number
   lessonType: string
 }) => {
+  // TODO: Uncomment when Resend API key is available
+  console.log('Booking confirmation email would be sent:', bookingData)
+  return { id: 'mock-booking-email-id' }
+  
+  /* 
   const { customerName, customerEmail, sessionCount, totalAmount, lessonType } = bookingData
 
   try {
@@ -136,6 +147,7 @@ export const sendBookingConfirmationEmail = async (bookingData: {
     console.error('Email sending error:', error)
     throw error
   }
+  */
 }
 
 export const sendCoachNotificationEmail = async (bookingData: {
@@ -147,6 +159,11 @@ export const sendCoachNotificationEmail = async (bookingData: {
   lessonType: string
   bookingId: string
 }) => {
+  // TODO: Uncomment when Resend API key is available
+  console.log('Coach notification email would be sent:', bookingData)
+  return { id: 'mock-coach-email-id' }
+  
+  /* 
   const { customerName, customerEmail, customerPhone, sessionCount, totalAmount, lessonType, bookingId } = bookingData
 
   try {
@@ -224,4 +241,5 @@ export const sendCoachNotificationEmail = async (bookingData: {
     console.error('Email sending error:', error)
     throw error
   }
+  */
 }
