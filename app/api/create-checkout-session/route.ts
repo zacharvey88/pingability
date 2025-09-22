@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
-import Stripe from 'stripe'
-import { supabase } from '@/lib/supabase'
+// import Stripe from 'stripe'
+// import { supabase } from '@/lib/supabase'
 import { PRICING, PackageType } from '@/lib/stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-08-27.basil',
-})
+// TODO: Uncomment when Stripe keys are available
+// const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+//   apiVersion: '2025-08-27.basil',
+// })
 
 export async function POST(request: NextRequest) {
+  // TODO: Uncomment when Stripe and Supabase are configured
+  console.log('Checkout session would be created (Stripe disabled)')
+  return NextResponse.json({ 
+    error: 'Payment processing temporarily disabled. Please contact us directly to book lessons.',
+    sessionId: null 
+  }, { status: 503 })
+  
+  /* 
   try {
     const body = await request.json()
     const { name, email, phone, lessonType, packageType } = body
@@ -119,4 +128,5 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
+  */
 }
