@@ -100,6 +100,16 @@ export default function Header() {
             >
               Contact
             </button>
+            <a
+              href="/custom-bats"
+              className={`transition-colors ${
+                isScrolled 
+                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
+                  : 'text-white hover:text-[#1ac2ab]'
+              }`}
+            >
+              Custom Bats
+            </a>
             <button
               onClick={() => scrollToSection('pricing')}
               className="booking-cursor bg-[#1ac2ab] text-white px-6 py-2 rounded-full hover:bg-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
@@ -176,6 +186,16 @@ export default function Header() {
               >
                 Contact
               </button>
+              <a
+                href="/custom-bats"
+                className={`transition-colors text-left ${
+                  isScrolled 
+                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
+                    : 'text-white hover:text-[#1ac2ab]'
+                }`}
+              >
+                Custom Bats
+              </a>
               <button
                 onClick={() => scrollToSection('pricing')}
                 className="booking-cursor bg-gradient-to-r from-[#05325c] to-[#1ac2ab] text-white px-6 py-2 rounded-full hover:from-[#05325c] hover:to-[#1ac2ab] transition-all duration-300 shadow-lg hover:shadow-xl text-center"

@@ -97,6 +97,14 @@ export default function Footer() {
                   Contact
                 </button>
               </li>
+              <li>
+                <a
+                  href="/custom-bats"
+                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                >
+                  Custom Bats
+                </a>
+              </li>
             </ul>
           </motion.div>
 
