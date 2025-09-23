@@ -165,14 +165,19 @@ export default function Hero() {
         transition={{ duration: 1, delay: 1 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
       >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center text-white"
+        <button
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          className="flex flex-col items-center text-white hover:text-gray-200 transition-colors cursor-pointer group"
         >
-          <span className="text-sm mb-2">Scroll to explore</span>
-          <ArrowDown className="w-6 h-6" />
-        </motion.div>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center"
+          >
+            <span className="text-sm mb-2">Scroll to explore</span>
+            <ArrowDown className="w-6 h-6 group-hover:scale-110 transition-transform" />
+          </motion.div>
+        </button>
       </motion.div>
     </section>
   )

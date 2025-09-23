@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
+import BackToTop from "@/components/BackToTop";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -53,6 +54,7 @@ export default function RootLayout({
       >
         {children}
         <CookieBanner />
+        <BackToTop />
       </body>
     </html>
   );

@@ -1,44 +1,43 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
-import { useRef, useEffect } from 'react'
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useRef, useEffect, useState } from 'react'
 
 export default function Testimonials() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current
-      const cardWidth = 400 // Approximate width of each card including gap
-      const currentScroll = container.scrollLeft
-      
-      if (currentScroll <= cardWidth) {
-        // If near the beginning, jump to the end (duplicated content)
-        container.scrollTo({ left: container.scrollWidth / 2, behavior: 'smooth' })
-      } else {
-        container.scrollBy({ left: -cardWidth, behavior: 'smooth' })
-      }
-    }
+    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
   }
 
   const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current
-      const cardWidth = 400 // Approximate width of each card including gap
-      const maxScroll = container.scrollWidth / 2
-      const currentScroll = container.scrollLeft
-      
-      if (currentScroll >= maxScroll - cardWidth) {
-        // If near the end, jump to the beginning
-        container.scrollTo({ left: 0, behavior: 'smooth' })
-      } else {
-        container.scrollBy({ left: cardWidth, behavior: 'smooth' })
-      }
-    }
+    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
   }
 
   const testimonials = [
+    {
+      name: 'Nadia Jimenez',
+      age: 'Adult Intermediate',
+      rating: 5,
+      text: 'I highly recommend Alex as a professional table tennis coach. He has extensive experience, deep understanding of techniques, and a patient teaching style that makes learning both effective and enjoyable.',
+      avatar: 'NJ'
+    },
+    {
+      name: 'Markus',
+      age: 'Adult Beginner',
+      rating: 5,
+      text: 'Great coaching! Helps to identify areas to improve and builds exercises to help you work on them.',
+      avatar: 'M'
+    },
+    {
+      name: 'Anonymous',
+      age: 'Adult Intermediate',
+      rating: 5,
+      text: 'Relaxing, friendly, supportive, understanding, simple instructions, fun. Makes you want more coaching.',
+      avatar: 'A'
+    },
     {
       name: 'Sarah Johnson',
       age: 'Adult Beginner',
@@ -50,66 +49,19 @@ export default function Testimonials() {
       name: 'Mike Chen',
       age: 'Teenager',
       rating: 5,
-      text: 'The group lessons are fantastic! Great atmosphere and Alex makes sure everyone gets individual attention. I&apos;ve improved so much and made some great friends too.',
+      text: 'The group lessons are fantastic! Great atmosphere and Alex makes sure everyone gets individual attention. I\'ve improved so much and made some great friends too.',
       avatar: 'MC'
     },
     {
       name: 'Emma Williams',
       age: 'Adult Intermediate',
       rating: 5,
-      text: 'I&apos;ve been playing for years but Alex helped me break through to the next level. His technical knowledge and ability to explain complex concepts simply is outstanding.',
+      text: 'I\'ve been playing for years but Alex helped me break through to the next level. His technical knowledge and ability to explain complex concepts simply is outstanding.',
       avatar: 'EW'
-    },
-    {
-      name: 'David Thompson',
-      age: 'Senior Player',
-      rating: 5,
-      text: 'At 65, I thought I was too old to improve, but Alex proved me wrong! His coaching is adapted perfectly for all ages and abilities. Highly recommended!',
-      avatar: 'DT'
-    },
-    {
-      name: 'Lisa Park',
-      age: 'Parent',
-      rating: 5,
-      text: 'My 12-year-old daughter loves her lessons with Alex. He&apos;s patient, encouraging, and makes learning fun. The progress she&apos;s made is incredible!',
-      avatar: 'LP'
-    },
-    {
-      name: 'James Wilson',
-      age: 'Adult Advanced',
-      rating: 5,
-      text: 'Alex&apos;s coaching helped me win my first local tournament! His tactical advice and technical corrections were spot on. Worth every penny.',
-      avatar: 'JW'
     }
   ]
 
-  // Duplicate testimonials for infinite scroll
-  const infiniteTestimonials = [...testimonials, ...testimonials]
 
-  useEffect(() => {
-    const container = scrollContainerRef.current
-    if (!container) return
-
-    // Start at the beginning of the first set of testimonials
-    container.scrollLeft = 0
-
-    const handleScroll = () => {
-      const maxScroll = container.scrollWidth / 2
-      const currentScroll = container.scrollLeft
-
-      // If scrolled past the first set, reset to beginning
-      if (currentScroll >= maxScroll) {
-        container.scrollLeft = currentScroll - maxScroll
-      }
-      // If scrolled before the beginning, jump to end of first set
-      else if (currentScroll < 0) {
-        container.scrollLeft = maxScroll + currentScroll
-      }
-    }
-
-    container.addEventListener('scroll', handleScroll)
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <section id="testimonials" className="py-20 bg-gray-50">
@@ -180,16 +132,16 @@ export default function Testimonials() {
             </button>
           </div>
 
-          <div ref={scrollContainerRef} className="overflow-x-auto pb-4 scrollbar-hide">
-            <div className="flex gap-6 min-w-max">
-              {infiniteTestimonials.map((testimonial, index) => (
+          <div className="relative overflow-hidden">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: `-${currentIndex * (100 / testimonials.length)}%` }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {testimonials.map((testimonial, index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow min-w-[350px] max-w-[400px] flex-shrink-0"
+                  key={testimonial.name}
+                  className="bg-white rounded-2xl p-6 min-w-[350px] max-w-[400px] flex-shrink-0"
                 >
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-[#e6f7f5] rounded-full flex items-center justify-center mr-4">
@@ -209,15 +161,14 @@ export default function Testimonials() {
                     ))}
                   </div>
 
-                  <div className="relative">
-                    <Quote className="absolute -top-2 -left-2 w-8 h-8 text-orange-200" />
-                    <p className="text-[#05325c] italic pl-6">
+                  <div>
+                    <p className="text-[#05325c] italic">
                       &ldquo;{testimonial.text}&rdquo;
                     </p>
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
 

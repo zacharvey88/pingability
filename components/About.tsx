@@ -31,30 +31,9 @@ export default function About() {
     <section id="about" className="py-20 bg-gradient-to-b from-gray-50 to-blue-50">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Coach Photo */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="aspect-square overflow-hidden relative">
-              <img
-                src="/player.png"
-                alt="Alex - Table Tennis Coach"
-                className="w-full h-full object-contain"
-                style={{
-                  maskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)'
-                }}
-              />
-            </div>
-          </motion.div>
-
           {/* Coach Story */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
@@ -68,20 +47,42 @@ export default function About() {
             </p>
             <div className="space-y-4 text-[#05325c]">
               <p>
-                I discovered my love for table tennis during university, where I not only played competitively 
-                but also took on the responsibility of running the table tennis club. This experience taught me 
-                the importance of creating an inclusive and supportive environment for players of all skill levels.
+                My table tennis journey began in my teens at our club here in Manchester, where I first 
+                fell in love with the sport. After developing my skills locally, I went off to university where I 
+                ran the table tennis club and gained my coaching certification with Table Tennis England.
               </p>
               <p>
-                My passion for coaching led me to pursue formal qualifications with Table Tennis England, 
-                ensuring I can provide the highest quality instruction to my students. I believe that table tennis 
-                is more than just a sport - it&apos;s a way to build confidence, improve focus, and create lasting friendships.
+                Now I&apos;m back where it all started, returning to coach at the very club that introduced me to 
+                table tennis. This full-circle journey has given me a deep understanding of both the technical 
+                aspects of coaching and the importance of creating a welcoming community for players of all levels.
               </p>
               <p>
                 At St Matthew&apos;s Community Centre in Stretford, I&apos;m proud to offer professional coaching in a 
-                welcoming environment. Whether you&apos;re picking up a paddle for the first time or looking to 
-                refine advanced techniques, I&apos;m here to help you achieve your goals.
+                familiar and supportive environment. Whether you&apos;re picking up a paddle for the first time or 
+                looking to refine advanced techniques, I&apos;m here to help you achieve your goals and share the 
+                same passion for table tennis that started my own journey.
               </p>
+            </div>
+          </motion.div>
+
+          {/* Coach Photo */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="aspect-square overflow-hidden relative">
+              <img
+                src="/alex-transparent.png"
+                alt="Alex - Table Tennis Coach"
+                className="w-full h-full object-contain"
+                style={{
+                  maskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)'
+                }}
+              />
             </div>
           </motion.div>
         </div>

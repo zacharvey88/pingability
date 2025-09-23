@@ -111,9 +111,27 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          {/* Contact Form */}
+          {/* Contact Image */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="relative flex"
+          >
+            <div className="w-full h-full rounded-2xl overflow-hidden">
+              <img
+                src="/contact-image.jpg"
+                alt="Table tennis coaching session"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
@@ -238,24 +256,6 @@ export default function Contact() {
                 </button>
               </div>
             </form>
-          </motion.div>
-
-          {/* Contact Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative flex"
-          >
-            <div className="w-full h-full rounded-2xl overflow-hidden">
-              <img
-                src="/contact-image.jpg"
-                alt="Table tennis coaching session"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />
           </motion.div>
         </div>
       </div>

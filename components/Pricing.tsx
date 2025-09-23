@@ -67,17 +67,17 @@ export default function Pricing() {
       popular: false
     },
     {
-      type: 'package_5' as PackageType,
-      name: '5-Lesson Package',
-      description: 'Great for regular improvement',
-      features: ['5 one-hour sessions', 'Progress tracking', 'Equipment provided', 'Flexible scheduling', '10% savings'],
+      type: 'package_3' as PackageType,
+      name: '3-Lesson Package',
+      description: 'Great for getting started',
+      features: ['3 one-hour sessions', 'Progress tracking', 'Equipment provided', 'Flexible scheduling'],
       popular: true
     },
     {
-      type: 'package_10' as PackageType,
-      name: '10-Lesson Package',
+      type: 'package_5' as PackageType,
+      name: '5-Lesson Package',
       description: 'Best value for committed players',
-      features: ['10 one-hour sessions', 'Progress tracking', 'Equipment provided', 'Flexible scheduling', '20% savings'],
+      features: ['5 one-hour sessions', 'Progress tracking', 'Equipment provided', 'Flexible scheduling'],
       popular: false
     }
   ]
@@ -104,10 +104,10 @@ export default function Pricing() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {packages.map((pkg, index) => {
             const price = PRICING[pkg.type]
-            const originalPrice = 25
+            const originalPrice = 29
             const savings = pkg.type === 'single' ? 0 : 
-              pkg.type === 'package_5' ? originalPrice * 5 - price :
-              originalPrice * 10 - price
+              pkg.type === 'package_3' ? originalPrice * 3 - price :
+              originalPrice * 5 - price
 
             return (
               <motion.div
@@ -142,7 +142,7 @@ export default function Pricing() {
                       <span className="text-4xl font-bold text-[#05325c]">£{price}</span>
                       {pkg.type !== 'single' && (
                         <span className="text-lg text-[#05325c] ml-2">
-                          (was £{originalPrice * (pkg.type === 'package_5' ? 5 : 10)})
+                          (was £{originalPrice * (pkg.type === 'package_3' ? 3 : 5)})
                         </span>
                       )}
                     </div>

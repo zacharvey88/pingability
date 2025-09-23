@@ -8,9 +8,9 @@ export default null
 
 // Pricing configuration
 export const PRICING = {
-  single: 25,
-  package_5: 115, // 5 lessons for £115 (save £10)
-  package_10: 220, // 10 lessons for £220 (save £30)
+  single: 29,
+  package_3: 82, // 3 lessons for £82 (5% discount)
+  package_5: 130, // 5 lessons for £130 (10% discount)
 } as const
 
-export type PackageType = 'single' | 'package_5' | 'package_10'
+export type PackageType = 'single' | 'package_3' | 'package_5'
