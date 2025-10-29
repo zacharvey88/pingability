@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Custom cursor for booking buttons only */
 .booking-cursor {
-  cursor: url('/tt-bat-pointer.png'), pointer;
+  cursor: pointer;
 }
 
 /* Pingability brand color scheme */
