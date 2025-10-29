@@ -45,7 +45,7 @@ export default function PrivacyPolicy() {
               </p>
               <ul className="list-disc pl-6 text-gray-700 mb-4">
                 <li>Name and contact information (email address, phone number)</li>
-                <li>Payment information (processed securely through Stripe)</li>
+                <li>Payment confirmation details related to bank transfers (e.g., references)</li>
                 <li>Lesson preferences and booking details</li>
                 <li>Communication preferences</li>
               </ul>
@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
                 We do not sell, trade, or otherwise transfer your personal information to third parties, except:
               </p>
               <ul className="list-disc pl-6 text-gray-700 mb-4">
-                <li><strong>Service Providers:</strong> We may share information with trusted third parties who assist us in operating our website and conducting our business (e.g., Stripe for payment processing, Supabase for data storage)</li>
+                <li><strong>Service Providers:</strong> We may share information with trusted third parties who assist us in operating our website and conducting our business (e.g., Supabase for data storage)</li>
                 <li><strong>Legal Requirements:</strong> We may disclose information when required by law or to protect our rights, property, or safety</li>
                 <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of the transaction</li>
               </ul>

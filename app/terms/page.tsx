@@ -62,8 +62,9 @@ export default function TermsOfService() {
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">3.2 Payment</h3>
               <p className="text-gray-700 mb-4">
-                Payment for lessons must be made in advance through our secure payment system. We accept payments 
-                via Stripe using major credit and debit cards. All prices are in British Pounds (GBP) and include VAT where applicable.
+                Payment for lessons must be made in advance via bank transfer. All prices are in British Pounds (GBP).
+                Please include your name and package as the payment reference. Bank details will be provided during booking
+                or upon request via email at <a className="text-blue-600 underline" href="mailto:info@pingability.co.uk">info@pingability.co.uk</a>.
               </p>
 
               <h3 className="text-xl font-semibold text-gray-900 mb-3">3.3 Refund Policy</h3>
