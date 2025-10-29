@@ -108,7 +108,7 @@ export default function Testimonials() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
             What Our Students Say
           </h2>
-          <p className="text-xl text-[#05325c] max-w-3xl mx-auto">
+          <p className="text-xl text-[#05325c] max-w-5xl md:max-w-6xl mx-auto">
             Don&apos;t just take our word for it - hear from the players who&apos;ve transformed their game with Alex
           </p>
         </motion.div>

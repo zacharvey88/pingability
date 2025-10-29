@@ -9,18 +9,13 @@ export default function CustomBats() {
   const features = [
     {
       icon: Target,
-      title: 'Personalized Design',
+      title: 'Personalised Design',
       description: 'Custom blade and rubber combination tailored to your playing style and preferences'
     },
     {
       icon: Zap,
       title: 'Performance Optimized',
       description: 'Engineered for maximum control, speed, and spin based on your technique'
-    },
-    {
-      icon: Award,
-      title: 'Professional Quality',
-      description: 'High-grade materials and expert craftsmanship for tournament-level performance'
     },
     {
       icon: Star,
@@ -48,7 +43,7 @@ export default function CustomBats() {
     {
       step: '4',
       title: 'Delivery',
-      description: 'Receive your personalized table tennis bat ready for action'
+      description: 'Receive your personalised table tennis bat ready for action'
     }
   ]
 
@@ -59,50 +54,33 @@ export default function CustomBats() {
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[#05325c] to-[#1ac2ab] text-white relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center lg:text-left"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 font-display">
-                Custom Table Tennis Bats
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-gray-200">
-                Hand-crafted, personalized paddles engineered for your unique playing style
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <button
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="booking-cursor bg-[#1ac2ab] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
-                >
-                  Order Your Custom Bat
-                </button>
-                <button
-                  onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300"
-                >
-                  Learn More
-                </button>
-              </div>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative">
-                <img
-                  src="/bat-care.jpg"
-                  alt="Custom table tennis bat care and maintenance"
-                  className="w-full h-80 object-cover rounded-2xl shadow-2xl"
-                />
-              </div>
-            </motion.div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 font-display">
+              Level Up With a Custom Bat
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-gray-200">
+              Personalised paddles engineered for your unique playing style and training goals
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="booking-cursor bg-[#1ac2ab] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Order Your Custom Bat
+              </button>
+              <button
+                onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                className="border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300"
+              >
+                Learn More
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -124,7 +102,7 @@ export default function CustomBats() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -308,121 +286,81 @@ export default function CustomBats() {
           </motion.div>
 
           <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Contact Methods */}
+            <div className="mb-8 p-4 bg-[#1ac2ab]/20 rounded-lg text-center">
+              <p className="text-sm text-gray-200">
+                <strong>Free consultation:</strong> No obligation to purchase. We&apos;re here to help you find the perfect bat for your game.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0 }}
                 viewport={{ once: true }}
-                className="space-y-8"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300"
               >
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-4">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">Email Consultation</h3>
-                      <p className="text-gray-200 text-sm">Get a detailed quote via email</p>
-                    </div>
+                <div className="flex flex-col items-center text-center mb-4">
+                  <div className="w-12 h-12 bg-[#1ac2ab] rounded-full flex items-center justify-center mb-4">
+                    <Mail className="w-6 h-6 text-white" />
                   </div>
-                  <a 
-                    href="mailto:info@pingability.co.uk" 
-                    className="text-white text-lg hover:text-[#1ac2ab] transition-colors font-medium"
-                  >
-                    info@pingability.co.uk
-                  </a>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-4">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">Phone Consultation</h3>
-                      <p className="text-gray-200 text-sm">Discuss your requirements directly</p>
-                    </div>
-                  </div>
-                  <a 
-                    href="tel:07432628588" 
-                    className="text-white text-lg hover:text-[#1ac2ab] transition-colors font-medium"
-                  >
-                    07432 628 588
-                  </a>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300">
-                  <div className="flex items-center mb-4">
-                    <div className="w-12 h-12 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-4">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold">In-Person Meeting</h3>
-                      <p className="text-gray-200 text-sm">Visit us for a hands-on consultation</p>
-                    </div>
-                  </div>
-                  <div className="text-white">
-                    <p className="font-medium">St Matthew&apos;s Community Centre</p>
-                    <p className="text-gray-200 text-sm">Chapel Lane, Stretford, Manchester</p>
-                    <p className="text-gray-200 text-sm mt-1">Monday evenings 6-9pm</p>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Email Consultation</h3>
+                    <p className="text-gray-200 text-sm mb-4">Get a detailed quote via email</p>
                   </div>
                 </div>
+                <a 
+                  href="mailto:info@pingability.co.uk" 
+                  className="text-white text-lg hover:text-[#1ac2ab] transition-colors font-medium text-center block"
+                >
+                  info@pingability.co.uk
+                </a>
               </motion.div>
 
-              {/* What to Expect */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300"
               >
-                <h3 className="text-2xl font-bold mb-6">What to Expect</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-white text-sm font-bold">1</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Initial Discussion</h4>
-                      <p className="text-gray-200 text-sm">We&apos;ll discuss your playing style, preferences, and goals</p>
-                    </div>
+                <div className="flex flex-col items-center text-center mb-4">
+                  <div className="w-12 h-12 bg-[#1ac2ab] rounded-full flex items-center justify-center mb-4">
+                    <Phone className="w-6 h-6 text-white" />
                   </div>
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-white text-sm font-bold">2</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Custom Specification</h4>
-                      <p className="text-gray-200 text-sm">We&apos;ll design the perfect blade and rubber combination for you</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-white text-sm font-bold">3</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Quote & Timeline</h4>
-                      <p className="text-gray-200 text-sm">You&apos;ll receive a detailed quote and delivery timeline</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-6 h-6 bg-[#1ac2ab] rounded-full flex items-center justify-center mr-3 mt-1 flex-shrink-0">
-                      <span className="text-white text-sm font-bold">4</span>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">Hand-Crafting</h4>
-                      <p className="text-gray-200 text-sm">Your custom bat is carefully assembled with precision</p>
-                    </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">Phone Consultation</h3>
+                    <p className="text-gray-200 text-sm mb-4">Discuss your requirements directly</p>
                   </div>
                 </div>
-                
-                <div className="mt-8 p-4 bg-[#1ac2ab]/20 rounded-lg">
-                  <p className="text-sm text-gray-200">
-                    <strong>Free consultation:</strong> No obligation to purchase. We&apos;re here to help you find the perfect bat for your game.
-                  </p>
+                <a 
+                  href="tel:07432628588" 
+                  className="text-white text-lg hover:text-[#1ac2ab] transition-colors font-medium text-center block"
+                >
+                  07432 628 588
+                </a>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 hover:bg-white/20 transition-all duration-300"
+              >
+                <div className="flex flex-col items-center text-center mb-4">
+                  <div className="w-12 h-12 bg-[#1ac2ab] rounded-full flex items-center justify-center mb-4">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">In-Person Meeting</h3>
+                    <p className="text-gray-200 text-sm mb-4">Visit us for a hands-on consultation</p>
+                  </div>
+                </div>
+                <div className="text-white text-center">
+                  <p className="font-medium">St Matthew&apos;s Community Centre</p>
+                  <p className="text-gray-200 text-sm">Chapel Lane, Stretford, Manchester</p>
+                  <p className="text-gray-200 text-sm mt-1">Monday evenings 6-9pm</p>
                 </div>
               </motion.div>
             </div>

@@ -21,10 +21,25 @@ export function useCookieConsent() {
     const cookieConsent = localStorage.getItem('cookieConsent')
     if (cookieConsent) {
       try {
-        const savedPreferences = JSON.parse(cookieConsent)
-        setPreferences(savedPreferences)
+        // If previous versions saved a string like "accepted"/"declined", normalise it
+        if (cookieConsent === 'accepted') {
+          setPreferences({ necessary: true, analytics: true, marketing: true })
+        } else if (cookieConsent === 'declined') {
+          setPreferences({ necessary: true, analytics: false, marketing: false })
+        } else if (cookieConsent.startsWith('{') || cookieConsent.startsWith('[')) {
+          const savedPreferences = JSON.parse(cookieConsent)
+          setPreferences(savedPreferences)
+        } else {
+          // Unknown legacy format; reset to necessary-only and overwrite storage
+          const fallback = { necessary: true, analytics: false, marketing: false }
+          setPreferences(fallback)
+          localStorage.setItem('cookieConsent', JSON.stringify(fallback))
+        }
       } catch (error) {
         console.error('Error parsing cookie preferences:', error)
+        const fallback = { necessary: true, analytics: false, marketing: false }
+        setPreferences(fallback)
+        localStorage.setItem('cookieConsent', JSON.stringify(fallback))
       }
     }
     setIsLoaded(true)

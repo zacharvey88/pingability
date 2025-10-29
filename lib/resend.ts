@@ -8,37 +8,68 @@
 export const sendContactEmail = async (formData: {
   name: string
   email: string
-  phone?: string
+  phone: string
   message: string
   contactMethod?: string
   hearAbout?: string
+  packageType?: string
+  startDate?: string
+  skillLevel?: string
 }) => {
   // TODO: Uncomment when Resend API key is available
   console.log('Contact email would be sent:', formData)
   return { id: 'mock-email-id' }
   
   /* 
-  const { name, email, phone, message, contactMethod, hearAbout } = formData
+  const { name, email, phone, message, contactMethod, hearAbout, packageType, startDate, skillLevel } = formData
+  
+  // Format package type for display
+  const packageDisplay = packageType === 'general' ? 'General Inquiry' :
+    packageType === 'single' ? 'Single Lesson' :
+    packageType === 'package_3' ? '3-Lesson Package' :
+    packageType === 'package_5' ? '5-Lesson Package' : ''
+  
+  // Format skill level for display
+  const skillDisplay = skillLevel ? skillLevel.charAt(0).toUpperCase() + skillLevel.slice(1) : ''
+  
+  // Format start date for display
+  const dateDisplay = startDate ? new Date(startDate).toLocaleDateString('en-GB', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }) : ''
 
   try {
     const { data, error } = await resend.emails.send({
       from: 'Pingability Contact <noreply@pingability.co.uk>',
       to: ['info@pingability.co.uk'],
-      subject: `New Contact Form Submission from ${name}`,
+      subject: packageType && packageType !== 'general' 
+        ? `🎾 New Booking Request from ${name}` 
+        : `New Contact Form Submission from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
-            New Contact Form Submission
+            ${packageType && packageType !== 'general' ? '🎾 New Booking Request' : 'New Contact Form Submission'}
           </h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            ${phone ? `<p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>` : ''}
+            <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
+            ${skillLevel ? `<p><strong>Current Skill Level:</strong> ${skillDisplay}</p>` : ''}
             ${contactMethod ? `<p><strong>Preferred Contact Method:</strong> ${contactMethod}</p>` : ''}
             ${hearAbout ? `<p><strong>How they heard about us:</strong> ${hearAbout}</p>` : ''}
           </div>
+          
+          ${packageType ? `
+          <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1ac2ab; margin-top: 0;">${packageType === 'general' ? 'Inquiry Type' : 'Booking Information'}</h3>
+            <p><strong>Interested In:</strong> ${packageDisplay}</p>
+            ${startDate ? `<p><strong>Preferred Start Date:</strong> ${dateDisplay}</p>` : ''}
+          </div>
+          ` : ''}
 
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #374151; margin-top: 0;">Message</h3>

@@ -1,12 +1,10 @@
 'use client'
-
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Check, Star, User, Target, Gamepad2, Calendar, BarChart3, Trophy } from 'lucide-react'
 import { PRICING, PackageType } from '@/lib/stripe'
 
 export default function Pricing() {
-  const [selectedPackage, setSelectedPackage] = useState<PackageType | null>(null)
+  
 
   const packages = [
     {
@@ -103,7 +101,7 @@ export default function Pricing() {
                     )}
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-3 mb-6">
                     {pkg.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center">
                         <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
@@ -113,35 +111,25 @@ export default function Pricing() {
                   </ul>
 
                   <button
-                    onClick={() => setSelectedPackage(pkg.type)}
-                    className={`w-full py-3 px-6 rounded-full font-semibold transition-all booking-cursor ${
+                    onClick={() => {
+                      // Store the package type in sessionStorage
+                      sessionStorage.setItem('selectedPackage', pkg.type)
+                      // Dispatch custom event to notify Contact component
+                      window.dispatchEvent(new Event('packageSelected'))
+                      // Scroll to contact form
+                      const contactSection = document.getElementById('contact')
+                      if (contactSection) {
+                        contactSection.scrollIntoView({ behavior: 'smooth' })
+                      }
+                    }}
+                    className={`w-full py-3 px-6 rounded-full font-semibold transition-all cursor-pointer ${
                       pkg.popular
                         ? 'bg-[#05325c] text-white hover:bg-[#1ac2ab]'
-                        : 'bg-gray-900 text-white hover:bg-gray-800'
+                        : 'bg-[#05325c] text-white hover:bg-[#1ac2ab]'
                     }`}
                   >
-                    Request to Book (Bank Transfer)
+                    Select this package
                   </button>
-
-                  {selectedPackage === pkg.type && (
-                    <div className="mt-4 p-4 rounded-lg bg-blue-50 text-[#05325c] text-sm">
-                      <p className="font-semibold mb-2">How to pay by bank transfer</p>
-                      <ul className="list-disc pl-5 space-y-1">
-                        <li>Send the fee (£{price}) via bank transfer</li>
-                        <li>Reference: Your name + package (e.g. "Alex package 3")</li>
-                        <li>Email confirmation to <a className="underline" href="mailto:info@pingability.co.uk">info@pingability.co.uk</a></li>
-                      </ul>
-                      <div className="mt-3 bg-white rounded-md p-3 border border-blue-100">
-                        <p><strong>Account name:</strong> Pingability</p>
-                        <p><strong>Sort code:</strong> 12-34-56</p>
-                        <p><strong>Account number:</strong> 12345678</p>
-                      </div>
-                      <div className="mt-3 flex gap-3">
-                        <a href="mailto:info@pingability.co.uk?subject=Booking%20Request&body=Hi%20Alex%2C%0A%0AI%20would%20like%20to%20book%20the%20${encodeURIComponent(pkg.name)}%20package.%20I%20will%20pay%20by%20bank%20transfer.%0A%0AName%3A%0APhone%3A%0APreferred%20times%3A%0A" className="px-4 py-2 rounded-full bg-[#1ac2ab] text-white hover:opacity-90">Email Booking</a>
-                        <button onClick={() => setSelectedPackage(null)} className="px-4 py-2 rounded-full border border-[#05325c] text-[#05325c] hover:bg-[#05325c] hover:text-white">Close</button>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </motion.div>
             )

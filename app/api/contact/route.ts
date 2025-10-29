@@ -4,10 +4,10 @@ import { sendContactEmail } from '@/lib/resend'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, message, contactMethod, hearAbout } = body
+    const { name, email, phone, message, contactMethod, hearAbout, packageType, startDate, skillLevel } = body
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -18,10 +18,13 @@ export async function POST(request: NextRequest) {
     await sendContactEmail({
       name,
       email,
-      phone: phone || undefined,
+      phone: phone,
       message,
       contactMethod: contactMethod || undefined,
-      hearAbout: hearAbout || undefined
+      hearAbout: hearAbout || undefined,
+      packageType: packageType || undefined,
+      startDate: startDate || undefined,
+      skillLevel: skillLevel || undefined
     })
 
     return NextResponse.json(

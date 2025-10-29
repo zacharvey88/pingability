@@ -52,6 +52,11 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
 }
 
+/* All buttons should show pointer cursor */
+button {
+  cursor: pointer;
+}
+
 /* Pingability brand color scheme */
 :root {
   --primary-blue: #05325c;
@@ -72,6 +77,60 @@ textarea::placeholder {
 input:focus::placeholder,
 textarea:focus::placeholder {
   color: #9ca3af !important;
+}
+
+/* Date input placeholder styling */
+input[type="date"] {
+  color: #374151;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/* Make date input placeholder text more visible - same as textarea placeholder */
+input[type="date"]:invalid::-webkit-datetime-edit {
+  color: #6b7280 !important;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
+input[type="date"]:invalid::-webkit-datetime-edit-fields-wrapper {
+  color: #6b7280 !important;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif !important;
+}
+
+input[type="date"]:invalid::-webkit-datetime-edit-text {
+  color: #6b7280 !important;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif !important;
+}
+
+input[type="date"]:invalid::-webkit-datetime-edit-month-field,
+input[type="date"]:invalid::-webkit-datetime-edit-day-field,
+input[type="date"]:invalid::-webkit-datetime-edit-year-field {
+  color: #6b7280 !important;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+}
+
+input[type="date"]:valid::-webkit-datetime-edit {
+  color: #374151;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+/* Firefox date input styling */
+input[type="date"]:invalid {
+  color: #6b7280;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+input[type="date"]:valid {
+  color: #374151;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
 
 /* Select dropdown styling */

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -16,13 +17,7 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
-    setIsMenuOpen(false)
-  }
+  
 
   return (
     <header
@@ -35,7 +30,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-3">
             <img 
               src="/pingability-logo.png" 
               alt="Pingability Logo" 
@@ -46,12 +41,12 @@ export default function Header() {
             }`}>
               Pingability
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection('home')}
+            <Link
+              href="/"
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -59,9 +54,9 @@ export default function Header() {
               }`}
             >
               Home
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
+            </Link>
+            <Link
+              href="/#about"
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -69,9 +64,9 @@ export default function Header() {
               }`}
             >
               About
-            </button>
-            <button
-              onClick={() => scrollToSection('pricing')}
+            </Link>
+            <Link
+              href="/#pricing"
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -79,9 +74,9 @@ export default function Header() {
               }`}
             >
               Pricing
-            </button>
-            <button
-              onClick={() => scrollToSection('testimonials')}
+            </Link>
+            <Link
+              href="/#testimonials"
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -89,9 +84,9 @@ export default function Header() {
               }`}
             >
               Testimonials
-            </button>
-            <button
-              onClick={() => scrollToSection('contact')}
+            </Link>
+            <Link
+              href="/#contact"
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -99,8 +94,8 @@ export default function Header() {
               }`}
             >
               Contact
-            </button>
-            <a
+            </Link>
+            <Link
               href="/custom-bats"
               className={`transition-colors ${
                 isScrolled 
@@ -109,13 +104,13 @@ export default function Header() {
               }`}
             >
               Custom Bats
-            </a>
-            <button
-              onClick={() => scrollToSection('pricing')}
+            </Link>
+            <Link
+              href="/#pricing"
               className="booking-cursor bg-[#1ac2ab] text-white px-6 py-2 rounded-full hover:bg-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Book Now
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -136,8 +131,9 @@ export default function Header() {
         {isMenuOpen && (
           <div className="md:hidden mt-4 py-4 border-t border-gray-200">
             <div className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection('home')}
+              <Link
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -145,9 +141,10 @@ export default function Header() {
                 }`}
               >
                 Home
-              </button>
-              <button
-                onClick={() => scrollToSection('about')}
+              </Link>
+              <Link
+                href="/#about"
+                onClick={() => setIsMenuOpen(false)}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -155,9 +152,10 @@ export default function Header() {
                 }`}
               >
                 About
-              </button>
-              <button
-                onClick={() => scrollToSection('pricing')}
+              </Link>
+              <Link
+                href="/#pricing"
+                onClick={() => setIsMenuOpen(false)}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -165,9 +163,10 @@ export default function Header() {
                 }`}
               >
                 Pricing
-              </button>
-              <button
-                onClick={() => scrollToSection('testimonials')}
+              </Link>
+              <Link
+                href="/#testimonials"
+                onClick={() => setIsMenuOpen(false)}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -175,9 +174,10 @@ export default function Header() {
                 }`}
               >
                 Testimonials
-              </button>
-              <button
-                onClick={() => scrollToSection('contact')}
+              </Link>
+              <Link
+                href="/#contact"
+                onClick={() => setIsMenuOpen(false)}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -185,8 +185,8 @@ export default function Header() {
                 }`}
               >
                 Contact
-              </button>
-              <a
+              </Link>
+              <Link
                 href="/custom-bats"
                 className={`transition-colors text-left ${
                   isScrolled 
@@ -195,13 +195,14 @@ export default function Header() {
                 }`}
               >
                 Custom Bats
-              </a>
-              <button
-                onClick={() => scrollToSection('pricing')}
+              </Link>
+              <Link
+                href="/#pricing"
+                onClick={() => setIsMenuOpen(false)}
                 className="booking-cursor bg-gradient-to-r from-[#05325c] to-[#1ac2ab] text-white px-6 py-2 rounded-full hover:from-[#05325c] hover:to-[#1ac2ab] transition-all duration-300 shadow-lg hover:shadow-xl text-center"
               >
                 Book Now
-              </button>
+              </Link>
             </div>
           </div>
         )}
