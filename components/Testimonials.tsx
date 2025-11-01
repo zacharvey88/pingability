@@ -79,7 +79,7 @@ export default function Testimonials() {
                 Ready to Start Your Table Tennis Journey?
               </h3>
               <p className="text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
-                Join hundreds of satisfied students who&apos;ve improved their game with Alex&apos;s expert coaching
+                Join all the other satisfied students who&apos;ve improved their game with Alex&apos;s expert coaching
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button

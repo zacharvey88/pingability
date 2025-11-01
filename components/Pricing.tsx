@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { Check, Star, User, Target, Gamepad2, Calendar, BarChart3, Trophy } from 'lucide-react'
-import { PRICING, PackageType } from '@/lib/stripe'
+import { PRICING, PackageType } from '@/lib/pricing'
 
 export default function Pricing() {
   
@@ -11,7 +11,7 @@ export default function Pricing() {
       type: 'single' as PackageType,
       name: 'Single Lesson',
       description: 'Perfect for trying out or occasional practice',
-      features: ['1-hour session', 'Personalized coaching', 'Equipment provided', 'Flexible scheduling'],
+      features: ['1-hour session', 'Personalised coaching', 'Equipment provided', 'Flexible scheduling'],
       popular: false
     },
     {
@@ -157,7 +157,7 @@ export default function Pricing() {
             {[
               {
                 icon: User,
-                title: "Personalized Coaching",
+                title: "Personalised Coaching",
                 description: "One-on-one attention tailored to your skill level and goals"
               },
               {
@@ -178,12 +178,12 @@ export default function Pricing() {
               {
                 icon: Calendar,
                 title: "Flexible Scheduling",
-                description: "Book sessions that fit perfectly with your schedule"
+                description: "Book your sessions as and when you're ready, no fixed schedule"
               },
               {
                 icon: BarChart3,
                 title: "Progress Tracking",
-                description: "Monitor your improvement with detailed progress reports"
+                description: "Monitor your improvement with progress reports and feedback"
               }
             ].map((item, index) => (
               <motion.div

@@ -109,6 +109,102 @@ export const sendContactEmail = async (formData: {
   */
 }
 
+// Custom bat inquiry email
+export const sendCustomBatEmail = async (formData: {
+  name: string
+  email: string
+  phone: string
+  message: string
+  consultationType?: string
+  playingStyle?: string
+  budget?: string
+}) => {
+  // TODO: Uncomment when Resend API key is available
+  console.log('Custom bat inquiry email would be sent:', formData)
+  return { id: 'mock-custom-bat-email-id' }
+  
+  /* 
+  const { name, email, phone, message, consultationType, playingStyle, budget } = formData
+  
+  // Format consultation type for display
+  const consultationDisplay = consultationType === 'email' ? 'Email' :
+    consultationType === 'phone' ? 'Phone' :
+    consultationType === 'in-person' ? 'In-Person' : ''
+  
+  // Format playing style for display
+  const playingStyleDisplay = playingStyle ? playingStyle.charAt(0).toUpperCase() + playingStyle.slice(1).replace('-', ' ') : ''
+  
+  // Format budget for display
+  const budgetDisplay = budget === '80' ? '£80 - Enthusiast Package' :
+    budget === '120' ? '£120 - Professional Package' :
+    budget === '160' ? '£160 - Elite Package' :
+    budget === 'flexible' ? 'Flexible / Need Advice' : 'Not specified'
+
+  try {
+    const { data, error } = await resend.emails.send({
+      from: 'Pingability Contact <noreply@pingability.co.uk>',
+      to: ['info@pingability.co.uk'],
+      subject: `🏓 Custom Bat Inquiry from ${name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
+            🏓 Custom Bat Inquiry
+          </h2>
+          
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
+            ${consultationType ? `<p><strong>Preferred Consultation Method:</strong> ${consultationDisplay}</p>` : ''}
+          </div>
+          
+          ${playingStyle || budget ? `
+          <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1ac2ab; margin-top: 0;">Custom Bat Preferences</h3>
+            ${playingStyle ? `<p><strong>Playing Style:</strong> ${playingStyleDisplay}</p>` : ''}
+            ${budget ? `<p><strong>Budget Range:</strong> ${budgetDisplay}</p>` : ''}
+          </div>
+          ` : ''}
+
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #374151; margin-top: 0;">Message</h3>
+            <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+          </div>
+
+          <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; font-size: 14px;">
+              This message was sent from the Pingability custom bats page at ${new Date().toLocaleString('en-GB', { 
+                timeZone: 'Europe/London',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+              })}.
+            </p>
+            <p style="color: #6b7280; font-size: 14px;">
+              Reply directly to this email to respond to ${name}.
+            </p>
+          </div>
+        </div>
+      `,
+      replyTo: email,
+    })
+
+    if (error) {
+      console.error('Resend error:', error)
+      throw new Error('Failed to send email')
+    }
+
+    return { success: true, messageId: data?.id }
+  } catch (error) {
+    console.error('Email sending error:', error)
+    throw error
+  }
+  */
+}
+
 export const sendBookingConfirmationEmail = async (bookingData: {
   customerName: string
   customerEmail: string

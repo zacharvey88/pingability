@@ -1,11 +1,3 @@
-// import { loadStripe } from '@stripe/stripe-js'
-
-// TODO: Uncomment when Stripe keys are available
-// const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
-
-// export default stripePromise
-export default null
-
 // Pricing configuration
 export const PRICING = {
   single: 29,
@@ -14,3 +6,4 @@ export const PRICING = {
 } as const
 
 export type PackageType = 'single' | 'package_3' | 'package_5'
+

@@ -7,7 +7,14 @@ export default function Footer() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      const headerHeight = 80 // Account for fixed header
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+      const offsetPosition = elementPosition - headerHeight
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
     }
   }
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Send, ChevronDown } from 'lucide-react'
-import { PRICING } from '@/lib/stripe'
+import { PRICING } from '@/lib/pricing'
 
 const ORIGINAL_PRICE = 29
 

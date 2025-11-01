@@ -3,10 +3,13 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter, usePathname } from 'next/navigation'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const router = useRouter()
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +20,54 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  
+  // Handle scroll to section after navigation
+  useEffect(() => {
+    const hash = window.location.hash.substring(1)
+    if (hash && pathname === '/') {
+      // Small delay to ensure page is rendered
+      setTimeout(() => {
+        const element = document.getElementById(hash)
+        if (element) {
+          const headerHeight = 80
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+          const offsetPosition = elementPosition - headerHeight
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100)
+    }
+  }, [pathname])
+
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    // Handle hash links - navigate to home page if needed, then scroll to section
+    if (href.startsWith('/#') || href.startsWith('#')) {
+      e.preventDefault()
+      const hash = href.includes('#') ? href.split('#')[1] : ''
+      
+      // Always navigate to home page for hash links (to ensure we get the correct section)
+      // This ensures Contact link always goes to main page contact form
+      if (pathname === '/') {
+        // Already on home page, just scroll to section
+        const element = document.getElementById(hash)
+        if (element) {
+          const headerHeight = 80 // Account for fixed header
+          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
+          const offsetPosition = elementPosition - headerHeight
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      } else {
+        // Not on home page, navigate to home page with hash
+        router.push(`/#${hash}`)
+      }
+      setIsMenuOpen(false) // Close mobile menu if open
+    }
+  }
 
   return (
     <header
@@ -57,6 +107,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#about"
+              onClick={(e) => handleHashClick(e, '/#about')}
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -67,6 +118,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#pricing"
+              onClick={(e) => handleHashClick(e, '/#pricing')}
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -77,6 +129,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#testimonials"
+              onClick={(e) => handleHashClick(e, '/#testimonials')}
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -87,6 +140,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#contact"
+              onClick={(e) => handleHashClick(e, '/#contact')}
               className={`transition-colors ${
                 isScrolled 
                   ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -107,6 +161,7 @@ export default function Header() {
             </Link>
             <Link
               href="/#pricing"
+              onClick={(e) => handleHashClick(e, '/#pricing')}
               className="booking-cursor bg-[#1ac2ab] text-white px-6 py-2 rounded-full hover:bg-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
             >
               Book Now
@@ -144,7 +199,10 @@ export default function Header() {
               </Link>
               <Link
                 href="/#about"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleHashClick(e, '/#about')
+                  setIsMenuOpen(false)
+                }}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -155,7 +213,10 @@ export default function Header() {
               </Link>
               <Link
                 href="/#pricing"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleHashClick(e, '/#pricing')
+                  setIsMenuOpen(false)
+                }}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -166,7 +227,10 @@ export default function Header() {
               </Link>
               <Link
                 href="/#testimonials"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleHashClick(e, '/#testimonials')
+                  setIsMenuOpen(false)
+                }}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -177,7 +241,10 @@ export default function Header() {
               </Link>
               <Link
                 href="/#contact"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleHashClick(e, '/#contact')
+                  setIsMenuOpen(false)
+                }}
                 className={`transition-colors text-left ${
                   isScrolled 
                     ? 'text-[#05325c] hover:text-[#1ac2ab]' 
@@ -198,7 +265,10 @@ export default function Header() {
               </Link>
               <Link
                 href="/#pricing"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  handleHashClick(e, '/#pricing')
+                  setIsMenuOpen(false)
+                }}
                 className="booking-cursor bg-gradient-to-r from-[#05325c] to-[#1ac2ab] text-white px-6 py-2 rounded-full hover:from-[#05325c] hover:to-[#1ac2ab] transition-all duration-300 shadow-lg hover:shadow-xl text-center"
               >
                 Book Now

@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
                 We do not sell, trade, or otherwise transfer your personal information to third parties, except:
               </p>
               <ul className="list-disc pl-6 text-gray-700 mb-4">
-                <li><strong>Service Providers:</strong> We may share information with trusted third parties who assist us in operating our website and conducting our business (e.g., Supabase for data storage)</li>
+                <li><strong>Service Providers:</strong> We may share information with trusted third parties who assist us in operating our website and conducting our business</li>
                 <li><strong>Legal Requirements:</strong> We may disclose information when required by law or to protect our rights, property, or safety</li>
                 <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of the transaction</li>
               </ul>

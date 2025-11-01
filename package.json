@@ -9,8 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@stripe/stripe-js": "^7.9.0",
-    "@supabase/supabase-js": "^2.57.4",
     "@types/uuid": "^10.0.0",
     "framer-motion": "^12.23.14",
     "lucide-react": "^0.544.0",
@@ -18,7 +16,6 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "resend": "^6.1.0",
-    "stripe": "^18.5.0",
     "uuid": "^13.0.0"
   },
   "devDependencies": {
