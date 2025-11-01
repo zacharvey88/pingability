@@ -1,6 +1,6 @@
 # Pingability - Table Tennis Coaching Website
 
-A modern, responsive website for Alex's table tennis coaching business in Manchester. Built with Next.js 15, TypeScript, and Tailwind CSS.
+A modern, responsive website for table tennis coaching in Manchester. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
 ## Features
 
@@ -45,27 +45,6 @@ A modern, responsive website for Alex's table tennis coaching business in Manche
 4. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
-
-```
-pingability/
-├── app/
-│   ├── api/
-│   │   └── contact/route.ts          # Contact form API
-│   ├── layout.tsx                    # Root layout
-│   └── page.tsx                      # Homepage
-├── components/
-│   ├── Header.tsx                    # Navigation header
-│   ├── Hero.tsx                      # Hero section with parallax
-│   ├── About.tsx                     # About Alex section
-│   ├── Pricing.tsx                   # Pricing and booking
-│   ├── Testimonials.tsx              # Customer testimonials
-│   ├── Contact.tsx                   # Contact form
-│   └── Footer.tsx                    # Footer
-├── lib/
-│   └── pricing.ts                    # Pricing configuration
-└── README.md
-```
 
 ## Features Overview
 
@@ -117,19 +96,9 @@ The app can be deployed to any platform that supports Next.js:
 - DigitalOcean App Platform
 - AWS Amplify
 
-## Environment Variables
-
-No environment variables are currently required for this project.
-
-## Support
-
-For questions or support, please contact:
-- Email: alex@pingability.co.uk
-- Phone: +44 7700 900123
-
 ## License
 
-This project is private and proprietary to Pingability Table Tennis Coaching.
+This project is private and proprietary to Zac Harvey
 
 ---
 
