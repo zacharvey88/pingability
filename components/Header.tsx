@@ -71,10 +71,10 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          ? 'shadow-lg'
+          : ''
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
@@ -86,76 +86,50 @@ export default function Header() {
               alt="Pingability Logo" 
               className="h-8 w-auto"
             />
-            <span className={`text-xl font-bold transition-colors ${
-              isScrolled ? 'text-[#05325c]' : 'text-white'
-            }`}>
+            <span className="text-xl font-bold transition-colors text-[#05325c]">
               Pingability
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-8">
             <Link
               href="/"
-              className={`transition-colors ${
-                isScrolled 
-                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                  : 'text-white hover:text-[#1ac2ab]'
-              }`}
+              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
             >
               Home
             </Link>
             <Link
               href="/#about"
               onClick={(e) => handleHashClick(e, '/#about')}
-              className={`transition-colors ${
-                isScrolled 
-                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                  : 'text-white hover:text-[#1ac2ab]'
-              }`}
+              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
             >
               About
             </Link>
             <Link
               href="/#pricing"
               onClick={(e) => handleHashClick(e, '/#pricing')}
-              className={`transition-colors ${
-                isScrolled 
-                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                  : 'text-white hover:text-[#1ac2ab]'
-              }`}
+              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
             >
               Pricing
             </Link>
             <Link
               href="/#testimonials"
               onClick={(e) => handleHashClick(e, '/#testimonials')}
-              className={`transition-colors ${
-                isScrolled 
-                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                  : 'text-white hover:text-[#1ac2ab]'
-              }`}
+              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
             >
               Testimonials
             </Link>
             <Link
               href="/#contact"
               onClick={(e) => handleHashClick(e, '/#contact')}
-              className={`transition-colors ${
-                isScrolled 
-                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                  : 'text-white hover:text-[#1ac2ab]'
-              }`}
+              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
             >
               Contact
             </Link>
             <Link
               href="/custom-bats"
-              className={`transition-colors ${
-                isScrolled 
-                  ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                  : 'text-white hover:text-[#1ac2ab]'
-              }`}
+              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
             >
               Custom Bats
             </Link>
@@ -171,7 +145,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
+            className="lg:hidden p-2"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
@@ -184,16 +158,12 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 py-4 border-t border-gray-200">
+          <div className="lg:hidden mt-4 py-4 border-t border-gray-200 bg-white -mx-4 px-4">
             <div className="flex flex-col space-y-4">
               <Link
                 href="/"
                 onClick={() => setIsMenuOpen(false)}
-                className={`transition-colors text-left ${
-                  isScrolled 
-                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                    : 'text-white hover:text-[#1ac2ab]'
-                }`}
+                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
               >
                 Home
               </Link>
@@ -203,11 +173,7 @@ export default function Header() {
                   handleHashClick(e, '/#about')
                   setIsMenuOpen(false)
                 }}
-                className={`transition-colors text-left ${
-                  isScrolled 
-                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                    : 'text-white hover:text-[#1ac2ab]'
-                }`}
+                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
               >
                 About
               </Link>
@@ -217,11 +183,7 @@ export default function Header() {
                   handleHashClick(e, '/#pricing')
                   setIsMenuOpen(false)
                 }}
-                className={`transition-colors text-left ${
-                  isScrolled 
-                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                    : 'text-white hover:text-[#1ac2ab]'
-                }`}
+                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
               >
                 Pricing
               </Link>
@@ -231,11 +193,7 @@ export default function Header() {
                   handleHashClick(e, '/#testimonials')
                   setIsMenuOpen(false)
                 }}
-                className={`transition-colors text-left ${
-                  isScrolled 
-                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                    : 'text-white hover:text-[#1ac2ab]'
-                }`}
+                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
               >
                 Testimonials
               </Link>
@@ -245,21 +203,13 @@ export default function Header() {
                   handleHashClick(e, '/#contact')
                   setIsMenuOpen(false)
                 }}
-                className={`transition-colors text-left ${
-                  isScrolled 
-                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                    : 'text-white hover:text-[#1ac2ab]'
-                }`}
+                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
               >
                 Contact
               </Link>
               <Link
                 href="/custom-bats"
-                className={`transition-colors text-left ${
-                  isScrolled 
-                    ? 'text-[#05325c] hover:text-[#1ac2ab]' 
-                    : 'text-white hover:text-[#1ac2ab]'
-                }`}
+                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
               >
                 Custom Bats
               </Link>
@@ -269,7 +219,7 @@ export default function Header() {
                   handleHashClick(e, '/#pricing')
                   setIsMenuOpen(false)
                 }}
-                className="booking-cursor bg-gradient-to-r from-[#05325c] to-[#1ac2ab] text-white px-6 py-2 rounded-full hover:from-[#05325c] hover:to-[#1ac2ab] transition-all duration-300 shadow-lg hover:shadow-xl text-center"
+                className="booking-cursor bg-gradient-to-r from-[#05325c] to-[#1ac2ab] text-white px-3 py-1.5 rounded-full hover:from-[#05325c] hover:to-[#1ac2ab] transition-all duration-300 shadow-md hover:shadow-lg text-center text-sm w-fit"
               >
                 Book Now
               </Link>

@@ -3,18 +3,12 @@
 import { motion } from 'framer-motion'
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useEffect, useState } from 'react'
+import TestimonialsMobile from './TestimonialsMobile'
 
 export default function Testimonials() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
-
-  const scrollLeft = () => {
-    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
-  }
-
-  const scrollRight = () => {
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
-  }
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const testimonials = [
     {
@@ -61,11 +55,21 @@ export default function Testimonials() {
     }
   ]
 
+  // Calculate max index - show 3 cards at a time, so max scroll is when last card is visible
+  const maxIndex = Math.max(0, testimonials.length - 3)
+
+  const scrollLeft = () => {
+    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1))
+  }
+
+  const scrollRight = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }
 
 
   return (
     <section id="testimonials" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-12 sm:px-4">
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -113,19 +117,25 @@ export default function Testimonials() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          {/* Navigation Buttons - Desktop Only */}
-          <div className="hidden lg:block">
+        {/* Mobile Testimonials Carousel */}
+        <div className="lg:hidden">
+          <TestimonialsMobile testimonials={testimonials} />
+        </div>
+
+        {/* Desktop Testimonials */}
+        <div className="hidden lg:block relative px-16 lg:px-20">
+          {/* Navigation Buttons */}
+          <div>
             <button
               onClick={scrollLeft}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:bg-gray-50"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:bg-gray-50"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-6 h-6 text-[#05325c]" />
             </button>
             <button
               onClick={scrollRight}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:bg-gray-50"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all hover:bg-gray-50"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-6 h-6 text-[#05325c]" />
@@ -133,9 +143,21 @@ export default function Testimonials() {
           </div>
 
           <div className="relative overflow-hidden">
+            {/* Left fade gradient - only on desktop, after first navigation and not on last card */}
+            {currentIndex > 0 && currentIndex < maxIndex && (
+              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
+            )}
+            {/* Right fade gradient - only on desktop, hide when at the end */}
+            {currentIndex < maxIndex && (
+              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
+            )}
+            
             <motion.div 
+              ref={containerRef}
               className="flex gap-6"
-              animate={{ x: `-${currentIndex * (100 / testimonials.length)}%` }}
+              animate={{ 
+                x: `-${currentIndex * (100 / 3)}%`
+              }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               {testimonials.map((testimonial, index) => (

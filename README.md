@@ -96,10 +96,6 @@ The app can be deployed to any platform that supports Next.js:
 - DigitalOcean App Platform
 - AWS Amplify
 
-## License
-
-This project is private and proprietary to Zac Harvey
-
 ---
 
 Built with ❤️ for the table tennis community in Manchester.

@@ -200,7 +200,7 @@ export default function Contact() {
   if (isSubmitted) {
     return (
       <section id="contact" className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-12 sm:px-4">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -230,7 +230,7 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-12 sm:px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

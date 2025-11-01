@@ -29,7 +29,7 @@ export default function About() {
 
   return (
     <section id="about" className="py-20 bg-gradient-to-b from-gray-50 to-blue-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-12 sm:px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Coach Story */}
           <motion.div
@@ -102,7 +102,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+              className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow max-w-sm mx-auto sm:max-w-none"
             >
               <div className="w-16 h-16 bg-[#e6f7f5] rounded-full flex items-center justify-center mx-auto mb-4">
                 <feature.icon className="w-8 h-8 text-blue-600" />

@@ -15,7 +15,6 @@ export default function Hero() {
   })
 
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   useEffect(() => {
     const video = videoRef.current
@@ -49,14 +48,15 @@ export default function Hero() {
       id="home"
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ margin: 0, padding: 0 }}
     >
       {/* Background Video with Parallax */}
       <motion.div
-        style={{ y }}
-        className="absolute inset-0 z-0"
+        style={{ y, top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%', minHeight: '100vh' }}
+        className="absolute z-0"
       >
         {/* Fallback background for loading/error states */}
-        <div className="w-full h-full bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700" />
+        <div className="w-full h-full bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700" style={{ width: '100%', height: '100%', minHeight: '100vh', position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} />
         
         {/* Static image placeholder */}
         <div 
@@ -65,6 +65,11 @@ export default function Hero() {
             position: 'absolute', 
             top: 0, 
             left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            minHeight: '100vh',
             backgroundImage: 'url(/hero-video-poster.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -72,7 +77,7 @@ export default function Hero() {
           }}
         />
         
-        {/* Video element */}
+        {/* Video element - only on desktop */}
         {!videoError && (
           <video
             ref={videoRef}
@@ -81,8 +86,8 @@ export default function Hero() {
             loop
             playsInline
             preload="metadata"
-            className="w-full h-full object-cover"
-            style={{ position: 'absolute', top: 0, left: 0 }}
+            className="hidden md:block w-full h-full object-cover"
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, width: '100%', height: '100%', minHeight: '100vh' }}
           >
             <source src="/hero-video.mp4" type="video/mp4" />
             <source src="/hero-video.webm" type="video/webm" />
@@ -96,14 +101,13 @@ export default function Hero() {
 
       {/* Content */}
       <motion.div
-        style={{ opacity }}
         className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto"
       >
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold mb-6 font-display"
+          className="text-5xl md:text-7xl font-bold mb-6 font-display px-4"
         >
           Table Tennis Coaching
         </motion.h1>
@@ -112,7 +116,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-xl md:text-2xl mb-8 text-gray-100"
+          className="text-xl md:text-2xl mb-8 text-gray-100 px-4"
         >
           Professional coaching with Alex at St Matthew&apos;s Community Centre
         </motion.p>
@@ -121,7 +125,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+          className="hidden sm:flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
         >
           <div className="flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
             <MapPin className="w-5 h-5" />
@@ -141,17 +145,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <button
             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-white text-[#05325c] px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#e6f7f5] hover:text-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="bg-white text-[#05325c] px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#e6f7f5] hover:text-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl w-[180px] sm:w-auto"
           >
             View Pricing
           </button>
           <button
             onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            className="booking-cursor border-2 border-white text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300"
+            className="booking-cursor border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300 w-[180px] sm:w-auto"
           >
             Book a Lesson
           </button>

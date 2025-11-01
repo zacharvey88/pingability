@@ -226,17 +226,17 @@ export default function CustomBats() {
             aria-hidden="true"
           />
         </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-6 sm:px-4 relative z-10">
           <motion.div
             initial={false}
             animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-display">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 font-display max-w-sm mx-auto sm:max-w-none">
               Level Up Your Game With a Custom Bat
             </h2>
-            <p className="text-xl text-gray-100 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-100 max-w-sm mx-auto sm:max-w-3xl">
               Every player is unique. Your table tennis bat should be too.
             </p>
           </motion.div>
@@ -248,7 +248,7 @@ export default function CustomBats() {
                 initial={false}
                 animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: mounted ? index * 0.1 : 0 }}
-                className="text-center p-6 bg-white/95 backdrop-blur-sm rounded-xl hover:shadow-xl hover:scale-105 transition-all"
+                className="text-center p-6 bg-white/95 backdrop-blur-sm rounded-xl hover:shadow-xl hover:scale-105 transition-all max-w-sm mx-auto sm:max-w-none"
               >
                 <div className="w-16 h-16 bg-[#e6f7f5] rounded-full flex items-center justify-center mx-auto mb-4">
                   <feature.icon className="w-8 h-8 text-[#1ac2ab]" />
@@ -267,29 +267,29 @@ export default function CustomBats() {
 
       {/* Process Section */}
       <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <motion.div
             initial={false}
             animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: mounted ? 0.3 : 0 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
               How It Works
             </h2>
-            <p className="text-xl text-[#05325c] max-w-5xl md:max-w-6xl mx-auto">
+            <p className="text-xl text-[#05325c] max-w-sm mx-auto sm:max-w-5xl md:max-w-6xl">
               From consultation to delivery, we ensure your custom bat is perfect for your game
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 relative max-w-6xl mx-auto">
             {process.map((step, index) => (
               <motion.div
                 key={`process-${step.step}-${index}`}
                 initial={false}
                 animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, delay: mounted ? 0.4 + index * 0.1 : 0 }}
-                className="text-center bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow relative"
+                className="text-center bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow relative max-w-sm mx-auto sm:max-w-none"
               >
                 <div className="w-16 h-16 bg-[#05325c] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                   {step.step}
@@ -311,7 +311,7 @@ export default function CustomBats() {
 
       {/* Pricing Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -319,10 +319,10 @@ export default function CustomBats() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
             Pricing Tiers
           </h2>
-            <p className="text-xl text-[#05325c] max-w-3xl mx-auto">
+            <p className="text-xl text-[#05325c] max-w-sm mx-auto sm:max-w-3xl">
               Professional quality custom bats at competitive prices
             </p>
           </motion.div>
@@ -358,7 +358,7 @@ export default function CustomBats() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true, margin: '-50px' }}
-                  className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow relative ${
+                  className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow relative max-w-sm mx-auto sm:max-w-none ${
                     pkg.popular ? 'ring-2 ring-[#1ac2ab] scale-105' : ''
                   }`}
                 >
@@ -413,7 +413,7 @@ export default function CustomBats() {
 
       {/* Contact Section */}
       <section id="contact" className="py-20 text-[#05325c]">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6 sm:px-4">
           <motion.div
             initial={false}
             animate={mounted ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -463,7 +463,7 @@ export default function CustomBats() {
                     <label htmlFor="consultationType" className="block text-sm font-semibold mb-2 text-[#05325c]">
                       Preferred Consultation Method *
                     </label>
-                    <div className="grid sm:grid-cols-3 gap-4 mb-4">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
                       <label className={`cursor-pointer rounded-xl p-4 border-2 transition-all ${
                         formData.consultationType === 'email' 
                           ? 'border-[#1ac2ab] bg-[#e6f7f5]' 

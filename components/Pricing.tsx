@@ -40,10 +40,10 @@ export default function Pricing() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
             Lesson Packages
           </h2>
-          <p className="text-xl text-[#05325c] max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-[#05325c] max-w-sm mx-auto mb-8 sm:max-w-3xl">
             Choose the perfect package for your table tennis journey
           </p>
         </motion.div>
@@ -64,8 +64,8 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${
-                  pkg.popular ? 'ring-2 ring-blue-600 scale-105' : ''
+                className={`relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 w-full max-w-sm mx-auto sm:max-w-none ${
+                  pkg.popular ? 'ring-2 ring-blue-600' : ''
                 }`}
               >
                 {pkg.popular && (
@@ -145,10 +145,10 @@ export default function Pricing() {
           className="mt-32"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#05325c] mb-4 font-display">
+            <h3 className="text-3xl md:text-4xl font-bold text-[#05325c] mb-4 font-display max-w-sm mx-auto sm:max-w-none">
               What&apos;s Included in Every Lesson
             </h3>
-            <p className="text-lg text-[#05325c] max-w-2xl mx-auto">
+            <p className="text-lg text-[#05325c] max-w-sm mx-auto sm:max-w-2xl">
               Everything you need for an exceptional table tennis learning experience
             </p>
           </div>
@@ -192,7 +192,7 @@ export default function Pricing() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200"
+                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 max-w-sm mx-auto sm:max-w-none"
               >
                 <div className="w-12 h-12 bg-[#e6f7f5] rounded-lg flex items-center justify-center mb-4">
                   <item.icon className="w-6 h-6 text-[#1ac2ab]" />
