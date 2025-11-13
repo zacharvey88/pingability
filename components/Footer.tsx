@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { MapPin, Clock, Mail, Phone, Facebook, Twitter, Instagram } from 'lucide-react'
+import Image from 'next/image'
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -31,9 +32,11 @@ export default function Footer() {
             className="lg:col-span-2"
           >
             <div className="flex items-center space-x-3 mb-4">
-              <img 
+              <Image 
                 src="/pingability-logo.png" 
                 alt="Pingability Logo" 
+                width={32}
+                height={32}
                 className="h-8 w-auto"
               />
               <span className="text-2xl font-bold">Pingability</span>

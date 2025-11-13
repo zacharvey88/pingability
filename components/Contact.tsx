@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Send, ChevronDown } from 'lucide-react'
 import { PRICING } from '@/lib/pricing'
+import Image from 'next/image'
 
 const ORIGINAL_PRICE = 29
 
@@ -255,11 +256,12 @@ export default function Contact() {
             viewport={{ once: true }}
             className="relative flex"
           >
-            <div className="w-full h-full rounded-2xl overflow-hidden">
-              <img
+            <div className="w-full h-full rounded-2xl overflow-hidden relative">
+              <Image
                 src="/contact-image.jpg"
                 alt="Table tennis coaching session"
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-2xl" />

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
+import Image from 'next/image'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -81,9 +82,11 @@ export default function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
-            <img 
+            <Image 
               src="/pingability-logo.png" 
               alt="Pingability Logo" 
+              width={32}
+              height={32}
               className="h-8 w-auto"
             />
             <span className="text-xl font-bold transition-colors text-[#05325c]">

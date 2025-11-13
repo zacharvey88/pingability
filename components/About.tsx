@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Award, Users, Clock, MapPin } from 'lucide-react'
+import Image from 'next/image'
 
 export default function About() {
   const features = [
@@ -74,10 +75,11 @@ export default function About() {
             className="relative"
           >
             <div className="aspect-square overflow-hidden relative">
-              <img
+              <Image
                 src="/alex-transparent.png"
                 alt="Alex - Table Tennis Coach"
-                className="w-full h-full object-contain"
+                fill
+                className="object-contain"
                 style={{
                   maskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 60%, transparent 100%)'
