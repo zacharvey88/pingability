@@ -60,7 +60,7 @@ export default function About() {
                 aspects of coaching and the importance of creating a welcoming community for players of all levels.
               </p>
               <p>
-                At St Matthew&apos;s Community Centre in Stretford, you'll receive professional coaching in a
+                At St Matthew&apos;s Community Centre in Stretford, you&apos;ll receive professional coaching in a
                 friendly and supportive environment. Whether you&apos;re picking up a bat for the first time or 
                 looking to refine advanced techniques, Alex will help you achieve your goals and share the 
                 same passion for table tennis that started his own journey.

@@ -68,7 +68,7 @@ export default function TestimonialsMobile({ testimonials }: TestimonialsMobileP
           dragConstraints={{ left: 0, right: 0 }}
           onDragEnd={handleDragEnd}
         >
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((testimonial) => (
             <div
               key={testimonial.name}
               className="w-full flex-shrink-0 px-4"
