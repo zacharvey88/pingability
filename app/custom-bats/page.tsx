@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Check, Star, Zap, Target, Award, Mail, Phone, MapPin, Send, ChevronDown } from 'lucide-react'
+import { Check, Star, Zap, Target, Mail, Phone, MapPin, Send, ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -14,8 +14,7 @@ export default function CustomBats() {
     phone: '',
     message: '',
     consultationType: '',
-    playingStyle: '',
-    budget: ''
+    playingStyle: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -28,55 +27,6 @@ export default function CustomBats() {
     setMounted(true)
   }, [])
 
-  // Check for preselected budget from pricing section
-  useEffect(() => {
-    const checkSelectedBudget = () => {
-      const selectedBudget = sessionStorage.getItem('selectedBudget')
-      if (selectedBudget && (selectedBudget === '80' || selectedBudget === '120' || selectedBudget === '160' || selectedBudget === 'flexible')) {
-        setFormData(prev => ({
-          ...prev,
-          budget: selectedBudget
-        }))
-        // Clear the sessionStorage after use
-        sessionStorage.removeItem('selectedBudget')
-      }
-    }
-
-    // Check immediately on mount
-    checkSelectedBudget()
-
-    // Also check when the section comes into view
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            checkSelectedBudget()
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    const contactSection = document.getElementById('contact')
-    if (contactSection) {
-      observer.observe(contactSection)
-    }
-
-    // Listen for custom event when budget is selected
-    const handleBudgetSelected = () => {
-      checkSelectedBudget()
-    }
-    window.addEventListener('budgetSelected', handleBudgetSelected)
-
-    // Also check periodically (fallback)
-    const interval = setInterval(checkSelectedBudget, 500)
-
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('budgetSelected', handleBudgetSelected)
-      clearInterval(interval)
-    }
-  }, [])
 
   // Validation functions
   const validateEmail = (email: string): boolean => {
@@ -159,8 +109,7 @@ export default function CustomBats() {
           phone: '',
           message: '',
           consultationType: '',
-          playingStyle: '',
-          budget: ''
+          playingStyle: ''
         })
       }
     } catch (error) {
@@ -183,7 +132,7 @@ export default function CustomBats() {
     {
       icon: Star,
       title: 'Unique to You',
-      description: 'One-of-a-kind paddle that reflects your personality and playing characteristics'
+      description: 'One-of-a-kind bat that reflects your personality and playing characteristics'
     }
   ]
 
@@ -305,108 +254,6 @@ export default function CustomBats() {
                 )}
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6 sm:px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: '-100px' }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
-            Pricing Tiers
-          </h2>
-            <p className="text-xl text-[#05325c] max-w-sm mx-auto sm:max-w-3xl">
-              Professional quality custom bats at competitive prices
-            </p>
-          </motion.div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: 'Enthusisat Package',
-                  price: '£80',
-                  budget: '80',
-                  features: ['Quality standard blade', 'Entry-level rubbers', 'Basic customization'],
-                  popular: false
-                },
-                {
-                  name: 'Professional Package',
-                  price: '£120',
-                  budget: '120',
-                  features: ['Premium blade', 'High-quality rubbers', 'Full customization'],
-                  popular: true
-                },
-                {
-                  name: 'Elite Package',
-                  price: '£160',
-                  budget: '160',
-                  features: ['Tournament-grade blade', 'Professional rubbers', 'Complete personalization'],
-                  popular: false
-                }
-              ].map((pkg, index) => (
-                <motion.div
-                  key={`pricing-${pkg.name}-${index}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow relative max-w-sm mx-auto sm:max-w-none ${
-                    pkg.popular ? 'ring-2 ring-[#1ac2ab] scale-105' : ''
-                  }`}
-                >
-                  {pkg.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-[#1ac2ab] text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Most Popular
-                      </div>
-                    </div>
-                  )}
-                  
-                  <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-[#e6f7f5] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <span className="text-2xl">🏓</span>
-                    </div>
-                    <h3 className="text-2xl font-bold text-[#05325c] mb-2">{pkg.name}</h3>
-                    <div className="text-4xl font-bold text-[#05325c]">{pkg.price}</div>
-                  </div>
-                  
-                  <ul className="space-y-3 mb-8">
-                    {pkg.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center">
-                        <Check className="w-5 h-5 text-[#1ac2ab] mr-3 flex-shrink-0" />
-                        <span className="text-[#05325c]">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <button
-                    onClick={() => {
-                      sessionStorage.setItem('selectedBudget', pkg.budget)
-                      window.dispatchEvent(new Event('budgetSelected'))
-                      const contactSection = document.getElementById('contact')
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' })
-                      }
-                    }}
-                    className={`w-full py-3 px-6 rounded-full font-semibold transition-all ${
-                      pkg.popular
-                        ? 'bg-[#05325c] text-white hover:bg-[#1ac2ab]'
-                        : 'bg-gray-900 text-white hover:bg-gray-800'
-                    } booking-cursor`}
-                  >
-                    Select
-                  </button>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -543,7 +390,6 @@ export default function CustomBats() {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] placeholder-gray-400"
-                      placeholder="Your name"
                     />
                   </div>
 
@@ -583,7 +429,6 @@ export default function CustomBats() {
                       className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] placeholder-gray-400 ${
                         errors.phone ? 'border-red-500' : 'border-gray-300'
                       }`}
-                      placeholder="07432 628 588"
                     />
                     {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone}</p>}
                   </div>
@@ -609,31 +454,10 @@ export default function CustomBats() {
                     <ChevronDown className="w-5 h-5 text-[#05325c] absolute right-4 bottom-3 pointer-events-none" />
                   </div>
 
-                  {/* Budget */}
-                  <div className="relative">
-                    <label htmlFor="budget" className="block text-sm font-semibold mb-2 text-[#05325c]">
-                      Budget Range
-                    </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 pl-4 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] appearance-none cursor-pointer"
-                    >
-                      <option value="" className="bg-white">Select budget range</option>
-                      <option value="80" className="bg-white">£80 - Enthusiast Package</option>
-                      <option value="120" className="bg-white">£120 - Professional Package</option>
-                      <option value="160" className="bg-white">£160 - Elite Package</option>
-                      <option value="flexible" className="bg-white">Flexible / Need Advice</option>
-                    </select>
-                    <ChevronDown className="w-5 h-5 text-[#05325c] absolute right-4 bottom-3 pointer-events-none" />
-                  </div>
-
                   {/* Message */}
                   <div>
                     <label htmlFor="message" className="block text-sm font-semibold mb-2 text-[#05325c]">
-                      Tell Us About Your Requirements
+                      Requirements
                     </label>
                     <textarea
                       id="message"
@@ -650,7 +474,7 @@ export default function CustomBats() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#1ac2ab] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed booking-cursor flex items-center justify-center gap-2"
+                    className="w-full bg-[#1ac2ab] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed booking-cursor flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>Sending...</>

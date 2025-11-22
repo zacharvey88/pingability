@@ -103,7 +103,7 @@ export default function TermsOfService() {
               <h3 className="text-xl font-semibold text-gray-900 mb-3">4.3 Equipment</h3>
               <p className="text-gray-700 mb-4">
                 We provide all necessary equipment during lessons. Students are welcome to bring their own 
-                paddles if preferred. We are not responsible for any damage to personal equipment.
+                bats if preferred. We are not responsible for any damage to personal equipment.
               </p>
             </section>
 

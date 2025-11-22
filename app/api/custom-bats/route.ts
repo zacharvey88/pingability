@@ -4,7 +4,7 @@ import { sendCustomBatEmail } from '@/lib/resend'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, message, consultationType, playingStyle, budget } = body
+    const { name, email, phone, message, consultationType, playingStyle } = body
 
     // Validate required fields
     if (!name || !email || !phone || !message) {
@@ -21,8 +21,7 @@ export async function POST(request: NextRequest) {
       phone,
       message,
       consultationType: consultationType || undefined,
-      playingStyle: playingStyle || undefined,
-      budget: budget || undefined
+      playingStyle: playingStyle || undefined
     })
 
     return NextResponse.json(

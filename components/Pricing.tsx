@@ -173,7 +173,7 @@ export default function Pricing() {
               {
                 icon: Trophy,
                 title: "Equipment Provided",
-                description: "High-quality paddles and balls included in every session"
+                description: "High-quality bats and balls included in every session"
               },
               {
                 icon: Calendar,

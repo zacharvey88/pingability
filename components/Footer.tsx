@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { MapPin, Clock, Mail, Phone, Facebook, Twitter, Instagram } from 'lucide-react'
+import { MapPin, Clock, Mail, Phone, Instagram } from 'lucide-react'
 import Image from 'next/image'
 
 export default function Footer() {
@@ -46,14 +46,13 @@ export default function Footer() {
               expert guidance and personalised training approach.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-[#1ac2ab] rounded-full flex items-center justify-center hover:bg-[#05325c] transition-colors">
-                <Facebook className="w-5 h-5 text-white" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-[#1ac2ab] rounded-full flex items-center justify-center hover:bg-[#05325c] transition-colors">
-                <Twitter className="w-5 h-5 text-white" />
-              </a>
-              <a href="#" className="w-10 h-10 bg-[#1ac2ab] rounded-full flex items-center justify-center hover:bg-[#05325c] transition-colors">
-                <Instagram className="w-5 h-5 text-white" />
+              <a 
+                href="https://instagram.com/pingability" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#1ac2ab] rounded-full flex items-center justify-center hover:bg-white transition-colors group"
+              >
+                <Instagram className="w-5 h-5 text-white group-hover:text-[#1ac2ab] transition-colors" />
               </a>
             </div>
           </motion.div>
@@ -170,7 +169,7 @@ export default function Footer() {
                   href="https://www.zacharvey.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[#1ac2ab] hover:text-blue-400 transition-colors"
+                  className="text-[#1ac2ab] hover:text-white transition-colors"
                 >
                   Zac Harvey
                 </a>

@@ -19,7 +19,7 @@ export default function CustomBats() {
     {
       icon: Star,
       title: 'Unique to You',
-      description: 'One-of-a-kind paddle that reflects your personality and playing characteristics'
+      description: 'One-of-a-kind bat that reflects your personality and playing characteristics'
     }
   ]
 

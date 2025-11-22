@@ -109,7 +109,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-bold mb-6 font-display px-4"
         >
-          Table Tennis Coaching
+          Pingability Manchester
         </motion.h1>
         
         <motion.p
@@ -118,7 +118,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl mb-8 text-gray-100 px-4"
         >
-          Professional coaching with Alex at St Matthew&apos;s Community Centre
+          Professional table tennis coaching for all ages and abilities
         </motion.p>
 
         <motion.div

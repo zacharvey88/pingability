@@ -5,6 +5,7 @@ import { Award, Users, Clock, MapPin } from 'lucide-react'
 import Image from 'next/image'
 
 export default function About() {
+
   const features = [
     {
       icon: Award,
@@ -43,25 +44,26 @@ export default function About() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
             Meet Alex
           </h2>
-            <p className="text-xl text-[#05325c] mb-6">
-              Your dedicated table tennis coach with a passion for helping players of all levels improve their game
+            <p className="text-xl md:text-2xl text-[#05325c] mb-6 italic font-medium border-l-4 border-[#1ac2ab] pl-6 py-1">
+              &quot;Alex is a dedicated table tennis coach with a passion for helping players of all levels&quot;
             </p>
             <div className="space-y-4 text-[#05325c]">
               <p>
-                My table tennis journey began in my teens at our club here in Manchester, where I first 
-                fell in love with the sport. After developing my skills locally, I went off to university where I 
-                ran the table tennis club and gained my coaching certification with Table Tennis England.
+                Alex&apos;s table tennis journey began in his teens at the club here in Manchester, where he first 
+                fell in love with the sport. After developing his skills locally, he went off to university where he 
+                served as head coach at Keele University Table Tennis Club for 3 years, running the club and 
+                gaining his coaching certification with Table Tennis England.
               </p>
               <p>
-                Now I&apos;m back where it all started, returning to coach at the very club that introduced me to 
-                table tennis. This full-circle journey has given me a deep understanding of both the technical 
+                Now he&apos;s back where it all started, returning to coach at the very club that introduced him to 
+                table tennis. This full-circle journey has given him a deep understanding of both the technical 
                 aspects of coaching and the importance of creating a welcoming community for players of all levels.
               </p>
               <p>
-                At St Matthew&apos;s Community Centre in Stretford, I&apos;m proud to offer professional coaching in a 
-                familiar and supportive environment. Whether you&apos;re picking up a paddle for the first time or 
-                looking to refine advanced techniques, I&apos;m here to help you achieve your goals and share the 
-                same passion for table tennis that started my own journey.
+                At St Matthew&apos;s Community Centre in Stretford, you'll receive professional coaching in a
+                friendly and supportive environment. Whether you&apos;re picking up a bat for the first time or 
+                looking to refine advanced techniques, Alex will help you achieve your goals and share the 
+                same passion for table tennis that started his own journey.
               </p>
             </div>
           </motion.div>

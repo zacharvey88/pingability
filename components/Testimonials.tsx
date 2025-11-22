@@ -7,20 +7,20 @@ import TestimonialsMobile from './TestimonialsMobile'
 
 export default function Testimonials() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [isAtStart, setIsAtStart] = useState(true)
+  const [isAtEnd, setIsAtEnd] = useState(false)
 
   const testimonials = [
     {
       name: 'Nadia Jimenez',
-      age: 'Adult Intermediate',
+      age: 'Adult Beginner',
       rating: 5,
       text: 'I highly recommend Alex as a professional table tennis coach. He has extensive experience, deep understanding of techniques, and a patient teaching style that makes learning both effective and enjoyable.',
       avatar: 'NJ'
     },
     {
       name: 'Markus',
-      age: 'Adult Beginner',
+      age: 'Adult Intermediate',
       rating: 5,
       text: 'Great coaching! Helps to identify areas to improve and builds exercises to help you work on them.',
       avatar: 'M'
@@ -55,16 +55,78 @@ export default function Testimonials() {
     }
   ]
 
-  // Calculate max index - show 3 cards at a time, so max scroll is when last card is visible
-  const maxIndex = Math.max(0, testimonials.length - 3)
+  const checkScrollPosition = () => {
+    const container = scrollContainerRef.current
+    if (!container) return
+    
+    const { scrollLeft, scrollWidth, clientWidth } = container
+    const threshold = 5 // Small threshold for floating point comparison
+    
+    const atStart = scrollLeft <= threshold
+    const atEnd = scrollWidth - scrollLeft <= clientWidth + threshold
+    
+    setIsAtStart(atStart)
+    setIsAtEnd(atEnd)
+  }
 
   const scrollLeft = () => {
-    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1))
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current
+      // Scroll by approximately one card width (400px card + 24px gap)
+      const scrollAmount = 424
+      const newScroll = Math.max(0, container.scrollLeft - scrollAmount)
+      container.scrollTo({
+        left: newScroll,
+        behavior: 'smooth'
+      })
+    }
   }
 
   const scrollRight = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+    if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current
+      const scrollAmount = 424
+      const maxScroll = container.scrollWidth - container.clientWidth
+      const newScroll = Math.min(maxScroll, container.scrollLeft + scrollAmount)
+      container.scrollTo({
+        left: newScroll,
+        behavior: 'smooth'
+      })
+    }
   }
+
+  // Check scroll position on mount and scroll events
+  useEffect(() => {
+    const container = scrollContainerRef.current
+    if (!container) return
+
+    // Initial check
+    checkScrollPosition()
+
+    const handleScroll = () => {
+      checkScrollPosition()
+    }
+
+    // Use both scroll and scrollend events for better tracking
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    container.addEventListener('scrollend', handleScroll, { passive: true })
+    
+    // Also check on resize
+    const handleResize = () => {
+      checkScrollPosition()
+    }
+    window.addEventListener('resize', handleResize)
+    
+    // Check periodically to catch any missed updates
+    const interval = setInterval(checkScrollPosition, 100)
+    
+    return () => {
+      container.removeEventListener('scroll', handleScroll)
+      container.removeEventListener('scrollend', handleScroll)
+      window.removeEventListener('resize', handleResize)
+      clearInterval(interval)
+    }
+  }, [])
 
 
   return (
@@ -142,28 +204,32 @@ export default function Testimonials() {
             </button>
           </div>
 
-          <div className="relative overflow-hidden">
-            {/* Left fade gradient - only on desktop, after first navigation and not on last card */}
-            {currentIndex > 0 && currentIndex < maxIndex && (
-              <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-gray-50 to-transparent z-20 pointer-events-none" />
-            )}
-            {/* Right fade gradient - only on desktop, hide when at the end */}
-            {currentIndex < maxIndex && (
-              <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-gray-50 to-transparent z-20 pointer-events-none" />
-            )}
+          <div className="relative">
+            {/* Left fade gradient - show when not at start */}
+            <div 
+              className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-gray-50 via-gray-50/80 to-transparent z-20 pointer-events-none transition-opacity duration-300"
+              style={{ opacity: isAtStart ? 0 : 1 }}
+            />
+            {/* Right fade gradient - show when not at end */}
+            <div 
+              className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-gray-50 via-gray-50/80 to-transparent z-20 pointer-events-none transition-opacity duration-300"
+              style={{ opacity: isAtEnd ? 0 : 1 }}
+            />
             
-            <motion.div 
-              ref={containerRef}
-              className="flex gap-6"
-              animate={{ 
-                x: `-${currentIndex * (100 / 3)}%`
-              }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+            <div 
+              ref={scrollContainerRef}
+              className="overflow-x-auto overflow-y-hidden scrollbar-hide relative"
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
+              <div className="flex gap-6 pb-2" style={{ width: 'max-content' }}>
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.name}
-                  className="bg-white rounded-2xl p-6 min-w-[350px] max-w-[400px] flex-shrink-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-white rounded-2xl p-6 w-[350px] sm:w-[400px] flex-shrink-0"
                 >
                   <div className="flex items-center mb-4">
                     <div className="w-12 h-12 bg-[#e6f7f5] rounded-full flex items-center justify-center mr-4">
@@ -190,7 +256,8 @@ export default function Testimonials() {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+              </div>
+            </div>
           </div>
         </div>
 

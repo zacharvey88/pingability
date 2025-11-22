@@ -117,14 +117,13 @@ export const sendCustomBatEmail = async (formData: {
   message: string
   consultationType?: string
   playingStyle?: string
-  budget?: string
 }) => {
   // TODO: Uncomment when Resend API key is available
   console.log('Custom bat inquiry email would be sent:', formData)
   return { id: 'mock-custom-bat-email-id' }
   
   /* 
-  const { name, email, phone, message, consultationType, playingStyle, budget } = formData
+  const { name, email, phone, message, consultationType, playingStyle } = formData
   
   // Format consultation type for display
   const consultationDisplay = consultationType === 'email' ? 'Email' :
@@ -133,12 +132,6 @@ export const sendCustomBatEmail = async (formData: {
   
   // Format playing style for display
   const playingStyleDisplay = playingStyle ? playingStyle.charAt(0).toUpperCase() + playingStyle.slice(1).replace('-', ' ') : ''
-  
-  // Format budget for display
-  const budgetDisplay = budget === '80' ? '£80 - Enthusiast Package' :
-    budget === '120' ? '£120 - Professional Package' :
-    budget === '160' ? '£160 - Elite Package' :
-    budget === 'flexible' ? 'Flexible / Need Advice' : 'Not specified'
 
   try {
     const { data, error } = await resend.emails.send({
@@ -159,11 +152,10 @@ export const sendCustomBatEmail = async (formData: {
             ${consultationType ? `<p><strong>Preferred Consultation Method:</strong> ${consultationDisplay}</p>` : ''}
           </div>
           
-          ${playingStyle || budget ? `
+          ${playingStyle ? `
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #1ac2ab; margin-top: 0;">Custom Bat Preferences</h3>
-            ${playingStyle ? `<p><strong>Playing Style:</strong> ${playingStyleDisplay}</p>` : ''}
-            ${budget ? `<p><strong>Budget Range:</strong> ${budgetDisplay}</p>` : ''}
+            <p><strong>Playing Style:</strong> ${playingStyleDisplay}</p>
           </div>
           ` : ''}
 
