@@ -1,7 +1,14 @@
 import { MailerSend, EmailParams, Sender, Recipient } from "mailersend"
 
+if (!process.env.MAILERSEND_API_KEY) {
+  throw new Error(
+    "MAILERSEND_API_KEY environment variable is required but not set. " +
+    "Please add it to your Vercel environment variables or .env.local file."
+  )
+}
+
 const mailerSend = new MailerSend({
-  apiKey: process.env.MAILERSEND_API_KEY || "",
+  apiKey: process.env.MAILERSEND_API_KEY,
 })
 
 // Email templates
