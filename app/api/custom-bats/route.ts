@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { sendCustomBatEmail } from '@/lib/resend'
+import { sendCustomBatEmail } from '@/lib/mailersend'
 
 export async function POST(request: NextRequest) {
   try {

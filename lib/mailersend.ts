@@ -1,8 +1,8 @@
-// import { Resend } from 'resend'
+import { MailerSend, EmailParams, Sender, Recipient } from "mailersend"
 
-// const resend = new Resend(process.env.RESEND_API_KEY)
-
-// export { resend }
+const mailerSend = new MailerSend({
+  apiKey: process.env.MAILERSEND_API_KEY || "",
+})
 
 // Email templates
 export const sendContactEmail = async (formData: {
@@ -16,11 +16,6 @@ export const sendContactEmail = async (formData: {
   startDate?: string
   skillLevel?: string
 }) => {
-  // TODO: Uncomment when Resend API key is available
-  console.log('Contact email would be sent:', formData)
-  return { id: 'mock-email-id' }
-  
-  /* 
   const { name, email, phone, message, contactMethod, hearAbout, packageType, startDate, skillLevel } = formData
   
   // Format package type for display
@@ -41,13 +36,19 @@ export const sendContactEmail = async (formData: {
   }) : ''
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'Pingability Contact <noreply@pingability.co.uk>',
-      to: ['info@pingability.co.uk'],
-      subject: packageType && packageType !== 'general' 
-        ? `🎾 New Booking Request from ${name}` 
-        : `New Contact Form Submission from ${name}`,
-      html: `
+    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Contact")
+    const recipients = [new Recipient("info@pingability.co.uk", "Pingability Info")]
+
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      .setReplyTo(new Recipient(email, name))
+      .setSubject(
+        packageType && packageType !== 'general' 
+          ? `🎾 New Booking Request from ${name}` 
+          : `New Contact Form Submission from ${name}`
+      )
+      .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
             ${packageType && packageType !== 'general' ? '🎾 New Booking Request' : 'New Contact Form Submission'}
@@ -92,21 +93,15 @@ export const sendContactEmail = async (formData: {
             </p>
           </div>
         </div>
-      `,
-      replyTo: email,
-    })
+      `)
 
-    if (error) {
-      console.error('Resend error:', error)
-      throw new Error('Failed to send email')
-    }
+    const response = await mailerSend.email.send(emailParams)
 
-    return { success: true, messageId: data?.id }
+    return { success: true, messageId: response.body?.message_id || 'sent' }
   } catch (error) {
     console.error('Email sending error:', error)
     throw error
   }
-  */
 }
 
 // Custom bat inquiry email
@@ -118,11 +113,6 @@ export const sendCustomBatEmail = async (formData: {
   consultationType?: string
   playingStyle?: string
 }) => {
-  // TODO: Uncomment when Resend API key is available
-  console.log('Custom bat inquiry email would be sent:', formData)
-  return { id: 'mock-custom-bat-email-id' }
-  
-  /* 
   const { name, email, phone, message, consultationType, playingStyle } = formData
   
   // Format consultation type for display
@@ -134,11 +124,15 @@ export const sendCustomBatEmail = async (formData: {
   const playingStyleDisplay = playingStyle ? playingStyle.charAt(0).toUpperCase() + playingStyle.slice(1).replace('-', ' ') : ''
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'Pingability Contact <noreply@pingability.co.uk>',
-      to: ['info@pingability.co.uk'],
-      subject: `🏓 Custom Bat Inquiry from ${name}`,
-      html: `
+    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Contact")
+    const recipients = [new Recipient("info@pingability.co.uk", "Pingability Info")]
+
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      .setReplyTo(new Recipient(email, name))
+      .setSubject(`🏓 Custom Bat Inquiry from ${name}`)
+      .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
             🏓 Custom Bat Inquiry
@@ -180,21 +174,15 @@ export const sendCustomBatEmail = async (formData: {
             </p>
           </div>
         </div>
-      `,
-      replyTo: email,
-    })
+      `)
 
-    if (error) {
-      console.error('Resend error:', error)
-      throw new Error('Failed to send email')
-    }
+    const response = await mailerSend.email.send(emailParams)
 
-    return { success: true, messageId: data?.id }
+    return { success: true, messageId: response.body?.message_id || 'sent' }
   } catch (error) {
     console.error('Email sending error:', error)
     throw error
   }
-  */
 }
 
 export const sendBookingConfirmationEmail = async (bookingData: {
@@ -204,19 +192,17 @@ export const sendBookingConfirmationEmail = async (bookingData: {
   totalAmount: number
   lessonType: string
 }) => {
-  // TODO: Uncomment when Resend API key is available
-  console.log('Booking confirmation email would be sent:', bookingData)
-  return { id: 'mock-booking-email-id' }
-  
-  /* 
   const { customerName, customerEmail, sessionCount, totalAmount, lessonType } = bookingData
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'Pingability Bookings <noreply@pingability.co.uk>',
-      to: [customerEmail],
-      subject: `Booking Confirmation - ${sessionCount} Table Tennis Lesson${sessionCount > 1 ? 's' : ''}`,
-      html: `
+    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Bookings")
+    const recipients = [new Recipient(customerEmail, customerName)]
+
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      .setSubject(`Booking Confirmation - ${sessionCount} Table Tennis Lesson${sessionCount > 1 ? 's' : ''}`)
+      .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
             Booking Confirmation
@@ -253,20 +239,15 @@ export const sendBookingConfirmationEmail = async (bookingData: {
             </p>
           </div>
         </div>
-      `,
-    })
+      `)
 
-    if (error) {
-      console.error('Resend error:', error)
-      throw new Error('Failed to send confirmation email')
-    }
+    const response = await mailerSend.email.send(emailParams)
 
-    return { success: true, messageId: data?.id }
+    return { success: true, messageId: response.body?.message_id || 'sent' }
   } catch (error) {
     console.error('Email sending error:', error)
     throw error
   }
-  */
 }
 
 export const sendCoachNotificationEmail = async (bookingData: {
@@ -278,19 +259,18 @@ export const sendCoachNotificationEmail = async (bookingData: {
   lessonType: string
   bookingId: string
 }) => {
-  // TODO: Uncomment when Resend API key is available
-  console.log('Coach notification email would be sent:', bookingData)
-  return { id: 'mock-coach-email-id' }
-  
-  /* 
   const { customerName, customerEmail, customerPhone, sessionCount, totalAmount, lessonType, bookingId } = bookingData
 
   try {
-    const { data, error } = await resend.emails.send({
-      from: 'Pingability Bookings <noreply@pingability.co.uk>',
-      to: ['info@pingability.co.uk'],
-      subject: `🎾 New Booking - ${customerName} (${sessionCount} lesson${sessionCount > 1 ? 's' : ''})`,
-      html: `
+    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Bookings")
+    const recipients = [new Recipient("info@pingability.co.uk", "Pingability Info")]
+
+    const emailParams = new EmailParams()
+      .setFrom(sentFrom)
+      .setTo(recipients)
+      .setReplyTo(new Recipient(customerEmail, customerName))
+      .setSubject(`🎾 New Booking - ${customerName} (${sessionCount} lesson${sessionCount > 1 ? 's' : ''})`)
+      .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
             🎾 New Table Tennis Booking
@@ -347,18 +327,14 @@ export const sendCoachNotificationEmail = async (bookingData: {
             </p>
           </div>
         </div>
-      `,
-    })
+      `)
 
-    if (error) {
-      console.error('Resend error:', error)
-      throw new Error('Failed to send coach notification email')
-    }
+    const response = await mailerSend.email.send(emailParams)
 
-    return { success: true, messageId: data?.id }
+    return { success: true, messageId: response.body?.message_id || 'sent' }
   } catch (error) {
     console.error('Email sending error:', error)
     throw error
   }
-  */
 }
+
