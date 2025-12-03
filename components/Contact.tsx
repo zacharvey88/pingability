@@ -288,7 +288,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c]"
                   />
                 </div>
 
@@ -304,7 +304,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     required
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] ${
                       errors.phone ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -326,7 +326,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -349,14 +349,14 @@ export default function Contact() {
                   </button>
                 </div>
                 <div className="relative">
-                  <select
-                    id="packageType"
-                    name="packageType"
-                    value={formData.packageType}
-                    onChange={handleChange}
-                    required
-                    className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white"
-                  >
+                    <select
+                      id="packageType"
+                      name="packageType"
+                      value={formData.packageType}
+                      onChange={handleChange}
+                      required
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
+                    >
                     <option value="" disabled className="text-[#05325c]">Select an option...</option>
                     <option value="general">General Inquiry</option>
                     <option value="single">Single Lesson (£{PRICING.single})</option>
@@ -378,7 +378,7 @@ export default function Contact() {
                       name="skillLevel"
                       value={formData.skillLevel}
                       onChange={handleChange}
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
                     >
                       <option value="" disabled className="text-[#05325c]">Select an option...</option>
                       <option value="beginner">Beginner</option>
@@ -420,7 +420,7 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent placeholder-gray-500 bg-white"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent placeholder-gray-500 bg-white text-[#05325c]"
                   placeholder="Tell us about your table tennis experience, goals, or any questions you have..."
                 />
               </div>
@@ -436,7 +436,7 @@ export default function Contact() {
                       name="contactMethod"
                       value={formData.contactMethod}
                       onChange={handleChange}
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
                     >
                       <option value="" disabled className="text-[#05325c]">Select an option...</option>
                       <option value="email">Email</option>
@@ -458,7 +458,7 @@ export default function Contact() {
                       name="hearAbout"
                       value={formData.hearAbout}
                       onChange={handleChange}
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
                     >
                       <option value="" disabled className="text-[#05325c]">Select an option...</option>
                       <option value="google">Google Search</option>

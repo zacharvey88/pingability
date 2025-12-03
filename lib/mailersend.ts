@@ -44,38 +44,43 @@ export const sendContactEmail = async (formData: {
 
   try {
     const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Contact")
-    const recipients = [new Recipient("info@pingability.co.uk", "Pingability Info")]
+    const recipients = [new Recipient("zac.harvey@gmail.com", "Zac Harvey")]
 
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
-      .setReplyTo(new Recipient(email, name))
+      .setReplyTo(new Sender(email, name))
       .setSubject(
         packageType && packageType !== 'general' 
-          ? `🎾 New Booking Request from ${name}` 
+          ? `🎾 New Lesson Request from ${name}` 
           : `New Contact Form Submission from ${name}`
       )
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
-            ${packageType && packageType !== 'general' ? '🎾 New Booking Request' : 'New Contact Form Submission'}
+            ${packageType && packageType !== 'general' ? '🎾 New Lesson Request' : 'New Contact Form Submission'}
           </h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
+            <h3 style="color: #374151; margin-top: 0;">Contact Information</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
             <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
-            ${skillLevel ? `<p><strong>Current Skill Level:</strong> ${skillDisplay}</p>` : ''}
-            ${contactMethod ? `<p><strong>Preferred Contact Method:</strong> ${contactMethod}</p>` : ''}
-            ${hearAbout ? `<p><strong>How they heard about us:</strong> ${hearAbout}</p>` : ''}
           </div>
           
           ${packageType ? `
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1ac2ab; margin-top: 0;">${packageType === 'general' ? 'Inquiry Type' : 'Booking Information'}</h3>
+            <h3 style="color: #1ac2ab; margin-top: 0;">Lesson Details</h3>
             <p><strong>Interested In:</strong> ${packageDisplay}</p>
             ${startDate ? `<p><strong>Preferred Start Date:</strong> ${dateDisplay}</p>` : ''}
+            ${skillLevel ? `<p><strong>Current Skill Level:</strong> ${skillDisplay}</p>` : ''}
+          </div>
+          ` : ''}
+
+          ${skillLevel && !packageType ? `
+          <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1ac2ab; margin-top: 0;">Skill Level</h3>
+            <p><strong>Current Skill Level:</strong> ${skillDisplay}</p>
           </div>
           ` : ''}
 
@@ -84,9 +89,17 @@ export const sendContactEmail = async (formData: {
             <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
           </div>
 
+          ${contactMethod || hearAbout ? `
+          <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #374151; margin-top: 0;">Additional Information</h3>
+            ${contactMethod ? `<p><strong>Preferred Contact Method:</strong> ${contactMethod}</p>` : ''}
+            ${hearAbout ? `<p><strong>How they heard about us:</strong> ${hearAbout}</p>` : ''}
+          </div>
+          ` : ''}
+
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
             <p style="color: #6b7280; font-size: 14px;">
-              This message was sent from the Pingability contact form at ${new Date().toLocaleString('en-GB', { 
+              Submitted on ${new Date().toLocaleString('en-GB', { 
                 timeZone: 'Europe/London',
                 year: 'numeric',
                 month: 'long',
@@ -96,7 +109,7 @@ export const sendContactEmail = async (formData: {
               })}.
             </p>
             <p style="color: #6b7280; font-size: 14px;">
-              Reply directly to this email to respond to ${name}.
+              Reply directly to this email to contact ${name}.
             </p>
           </div>
         </div>
@@ -132,12 +145,12 @@ export const sendCustomBatEmail = async (formData: {
 
   try {
     const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Contact")
-    const recipients = [new Recipient("info@pingability.co.uk", "Pingability Info")]
+    const recipients = [new Recipient("zac.harvey@gmail.com", "Zac Harvey")]
 
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
-      .setReplyTo(new Recipient(email, name))
+      .setReplyTo(new Sender(email, name))
       .setSubject(`🏓 Custom Bat Inquiry from ${name}`)
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -146,17 +159,17 @@ export const sendCustomBatEmail = async (formData: {
           </h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #374151; margin-top: 0;">Contact Details</h3>
+            <h3 style="color: #374151; margin-top: 0;">Contact Information</h3>
             <p><strong>Name:</strong> ${name}</p>
             <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
             <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
-            ${consultationType ? `<p><strong>Preferred Consultation Method:</strong> ${consultationDisplay}</p>` : ''}
           </div>
           
-          ${playingStyle ? `
+          ${playingStyle || consultationType ? `
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1ac2ab; margin-top: 0;">Custom Bat Preferences</h3>
-            <p><strong>Playing Style:</strong> ${playingStyleDisplay}</p>
+            <h3 style="color: #1ac2ab; margin-top: 0;">Bat Preferences</h3>
+            ${playingStyle ? `<p><strong>Playing Style:</strong> ${playingStyleDisplay}</p>` : ''}
+            ${consultationType ? `<p><strong>Preferred Consultation Method:</strong> ${consultationDisplay}</p>` : ''}
           </div>
           ` : ''}
 
@@ -167,7 +180,7 @@ export const sendCustomBatEmail = async (formData: {
 
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb;">
             <p style="color: #6b7280; font-size: 14px;">
-              This message was sent from the Pingability custom bats page at ${new Date().toLocaleString('en-GB', { 
+              Submitted on ${new Date().toLocaleString('en-GB', { 
                 timeZone: 'Europe/London',
                 year: 'numeric',
                 month: 'long',
@@ -177,7 +190,7 @@ export const sendCustomBatEmail = async (formData: {
               })}.
             </p>
             <p style="color: #6b7280; font-size: 14px;">
-              Reply directly to this email to respond to ${name}.
+              Reply directly to this email to contact ${name}.
             </p>
           </div>
         </div>
@@ -275,7 +288,7 @@ export const sendCoachNotificationEmail = async (bookingData: {
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
-      .setReplyTo(new Recipient(customerEmail, customerName))
+      .setReplyTo(new Sender(customerEmail, customerName))
       .setSubject(`🎾 New Booking - ${customerName} (${sessionCount} lesson${sessionCount > 1 ? 's' : ''})`)
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
