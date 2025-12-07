@@ -9,12 +9,14 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@types/react-datepicker": "^6.2.0",
     "@types/uuid": "^10.0.0",
     "framer-motion": "^12.23.14",
     "lucide-react": "^0.544.0",
     "mailersend": "^2.6.0",
     "next": "^16.0.7",
     "react": "19.1.0",
+    "react-datepicker": "^8.10.0",
     "react-dom": "19.1.0",
     "resend": "^6.1.0",
     "uuid": "^13.0.0"

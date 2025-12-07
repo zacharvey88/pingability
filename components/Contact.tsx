@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { Send, ChevronDown } from 'lucide-react'
 import { PRICING } from '@/lib/pricing'
 import Image from 'next/image'
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const ORIGINAL_PRICE = 29
 
@@ -24,7 +26,8 @@ export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [errors, setErrors] = useState({
     email: '',
-    phone: ''
+    phone: '',
+    startDate: ''
   })
 
   // Check for preselected package from pricing section
@@ -94,6 +97,16 @@ export default function Contact() {
     return phoneRegex.test(cleaned) || cleaned.length >= 10
   }
 
+  // Helper function to check if a date is a Monday
+  const isMonday = (date: Date): boolean => {
+    return date.getDay() === 1 // 1 = Monday
+  }
+
+  // Filter function to disable all days except Mondays
+  const filterDate = (date: Date): boolean => {
+    return isMonday(date)
+  }
+
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     
@@ -119,7 +132,7 @@ export default function Contact() {
     
     // Validate email, phone, and packageType before submission
     let isValid = true
-    const newErrors = { email: '', phone: '' }
+    const newErrors = { email: '', phone: '', startDate: '' }
 
     if (!validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address'
@@ -173,7 +186,7 @@ export default function Contact() {
         startDate: '',
         skillLevel: ''
       })
-      setErrors({ email: '', phone: '' })
+      setErrors({ email: '', phone: '', startDate: '' })
     } catch (error) {
       console.error('Error submitting form:', error)
       alert('An error occurred. Please try again.')
@@ -395,16 +408,34 @@ export default function Contact() {
                     <label htmlFor="startDate" className="block text-sm font-medium text-[#05325c] mb-2">
                       {formData.packageType === 'single' ? 'Preferred Date' : 'Preferred Start Date'}
                     </label>
-                    <input
-                      type="date"
-                      id="startDate"
-                      name="startDate"
-                      value={formData.startDate}
-                      onChange={handleChange}
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-gray-700"
-                      style={{ colorScheme: 'light' }}
+                    <DatePicker
+                      selected={formData.startDate ? new Date(formData.startDate) : null}
+                      onChange={(date: Date | null) => {
+                        if (date) {
+                          setFormData(prev => ({
+                            ...prev,
+                            startDate: date.toISOString().split('T')[0]
+                          }))
+                          setErrors(prev => ({ ...prev, startDate: '' }))
+                        } else {
+                          setFormData(prev => ({
+                            ...prev,
+                            startDate: ''
+                          }))
+                        }
+                      }}
+                      filterDate={filterDate}
+                      minDate={new Date()}
+                      placeholderText="Select a Monday"
+                      dateFormat="dd/MM/yyyy"
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] ${
+                        errors.startDate ? 'border-red-500' : 'border-gray-300'
+                      }`}
+                      wrapperClassName="w-full"
                     />
+                    {errors.startDate && (
+                      <p className="mt-1 text-sm text-red-600">{errors.startDate}</p>
+                    )}
                   </div>
                 )}
               </div>

@@ -31,8 +31,13 @@ export async function POST(request: NextRequest) {
       { message: 'Contact request submitted successfully' },
       { status: 200 }
     )
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact API error:', error)
+    console.error('Error details:', {
+      message: error?.message,
+      stack: error?.stack,
+      response: error?.response
+    })
     return NextResponse.json(
       { error: 'Failed to send contact request. Please try again.' },
       { status: 500 }

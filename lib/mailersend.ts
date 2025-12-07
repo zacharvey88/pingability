@@ -1,15 +1,22 @@
 import { MailerSend, EmailParams, Sender, Recipient } from "mailersend"
 
-if (!process.env.MAILERSEND_API_KEY) {
-  throw new Error(
-    "MAILERSEND_API_KEY environment variable is required but not set. " +
-    "Please add it to your Vercel environment variables or .env.local file."
-  )
-}
+// Lazy initialization of MailerSend to avoid build-time errors
+let mailerSend: MailerSend | null = null
 
-const mailerSend = new MailerSend({
-  apiKey: process.env.MAILERSEND_API_KEY,
-})
+const getMailerSend = (): MailerSend => {
+  if (!mailerSend) {
+    if (!process.env.MAILERSEND_API_KEY) {
+      throw new Error(
+        "MAILERSEND_API_KEY environment variable is required but not set. " +
+        "Please add it to your Vercel environment variables or .env.local file."
+      )
+    }
+    mailerSend = new MailerSend({
+      apiKey: process.env.MAILERSEND_API_KEY,
+    })
+  }
+  return mailerSend
+}
 
 // Email templates
 export const sendContactEmail = async (formData: {
@@ -115,11 +122,28 @@ export const sendContactEmail = async (formData: {
         </div>
       `)
 
-    const response = await mailerSend.email.send(emailParams)
+    const response = await getMailerSend().email.send(emailParams)
 
-    return { success: true, messageId: response.body?.message_id || 'sent' }
-  } catch (error) {
+    // MailerSend response structure may vary - try multiple ways to get message ID
+    let messageId = 'sent'
+    if (response?.headers?.['x-message-id']) {
+      messageId = response.headers['x-message-id']
+    } else if (response?.body?.message_id) {
+      messageId = response.body.message_id
+    } else if (typeof response === 'string') {
+      messageId = response
+    }
+
+    return { success: true, messageId }
+  } catch (error: any) {
     console.error('Email sending error:', error)
+    // Log more details for debugging
+    if (error?.response) {
+      console.error('Error response:', error.response)
+    }
+    if (error?.message) {
+      console.error('Error message:', error.message)
+    }
     throw error
   }
 }
@@ -196,11 +220,28 @@ export const sendCustomBatEmail = async (formData: {
         </div>
       `)
 
-    const response = await mailerSend.email.send(emailParams)
+    const response = await getMailerSend().email.send(emailParams)
 
-    return { success: true, messageId: response.body?.message_id || 'sent' }
-  } catch (error) {
+    // MailerSend response structure may vary - try multiple ways to get message ID
+    let messageId = 'sent'
+    if (response?.headers?.['x-message-id']) {
+      messageId = response.headers['x-message-id']
+    } else if (response?.body?.message_id) {
+      messageId = response.body.message_id
+    } else if (typeof response === 'string') {
+      messageId = response
+    }
+
+    return { success: true, messageId }
+  } catch (error: any) {
     console.error('Email sending error:', error)
+    // Log more details for debugging
+    if (error?.response) {
+      console.error('Error response:', error.response)
+    }
+    if (error?.message) {
+      console.error('Error message:', error.message)
+    }
     throw error
   }
 }
@@ -261,11 +302,28 @@ export const sendBookingConfirmationEmail = async (bookingData: {
         </div>
       `)
 
-    const response = await mailerSend.email.send(emailParams)
+    const response = await getMailerSend().email.send(emailParams)
 
-    return { success: true, messageId: response.body?.message_id || 'sent' }
-  } catch (error) {
+    // MailerSend response structure may vary - try multiple ways to get message ID
+    let messageId = 'sent'
+    if (response?.headers?.['x-message-id']) {
+      messageId = response.headers['x-message-id']
+    } else if (response?.body?.message_id) {
+      messageId = response.body.message_id
+    } else if (typeof response === 'string') {
+      messageId = response
+    }
+
+    return { success: true, messageId }
+  } catch (error: any) {
     console.error('Email sending error:', error)
+    // Log more details for debugging
+    if (error?.response) {
+      console.error('Error response:', error.response)
+    }
+    if (error?.message) {
+      console.error('Error message:', error.message)
+    }
     throw error
   }
 }
@@ -349,11 +407,28 @@ export const sendCoachNotificationEmail = async (bookingData: {
         </div>
       `)
 
-    const response = await mailerSend.email.send(emailParams)
+    const response = await getMailerSend().email.send(emailParams)
 
-    return { success: true, messageId: response.body?.message_id || 'sent' }
-  } catch (error) {
+    // MailerSend response structure may vary - try multiple ways to get message ID
+    let messageId = 'sent'
+    if (response?.headers?.['x-message-id']) {
+      messageId = response.headers['x-message-id']
+    } else if (response?.body?.message_id) {
+      messageId = response.body.message_id
+    } else if (typeof response === 'string') {
+      messageId = response
+    }
+
+    return { success: true, messageId }
+  } catch (error: any) {
     console.error('Email sending error:', error)
+    // Log more details for debugging
+    if (error?.response) {
+      console.error('Error response:', error.response)
+    }
+    if (error?.message) {
+      console.error('Error message:', error.message)
+    }
     throw error
   }
 }
