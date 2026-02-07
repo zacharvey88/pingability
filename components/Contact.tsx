@@ -228,7 +228,7 @@ export default function Contact() {
               Thank You!
             </h2>
             <p className="text-xl text-[#05325c] mb-8">
-              Your message has been sent successfully. Alex will get back to you within 24 hours.
+              Your message has been sent successfully.
             </p>
             <button
               onClick={() => setIsSubmitted(false)}

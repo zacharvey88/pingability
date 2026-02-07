@@ -18,6 +18,9 @@ const getMailerSend = (): MailerSend => {
   return mailerSend
 }
 
+// From address must be a verified domain in your MailerSend account
+const FROM_EMAIL = process.env.MAILERSEND_FROM_EMAIL ?? "noreply@pingability.co.uk"
+
 // Email templates
 export const sendContactEmail = async (formData: {
   name: string
@@ -50,22 +53,18 @@ export const sendContactEmail = async (formData: {
   }) : ''
 
   try {
-    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Contact")
+    const sentFrom = new Sender(FROM_EMAIL, "Pingability")
     const recipients = [new Recipient("zac.harvey@gmail.com", "Zac Harvey")]
 
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
       .setReplyTo(new Sender(email, name))
-      .setSubject(
-        packageType && packageType !== 'general' 
-          ? `🎾 New Lesson Request from ${name}` 
-          : `New Contact Form Submission from ${name}`
-      )
+      .setSubject(`🏓 New Coaching Enquiry`)
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
-            ${packageType && packageType !== 'general' ? '🎾 New Lesson Request' : 'New Contact Form Submission'}
+            Coaching Enquiry from ${name}
           </h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -168,7 +167,7 @@ export const sendCustomBatEmail = async (formData: {
   const playingStyleDisplay = playingStyle ? playingStyle.charAt(0).toUpperCase() + playingStyle.slice(1).replace('-', ' ') : ''
 
   try {
-    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Contact")
+    const sentFrom = new Sender(FROM_EMAIL, "Pingability")
     const recipients = [new Recipient("zac.harvey@gmail.com", "Zac Harvey")]
 
     const emailParams = new EmailParams()
@@ -256,7 +255,7 @@ export const sendBookingConfirmationEmail = async (bookingData: {
   const { customerName, customerEmail, sessionCount, totalAmount, lessonType } = bookingData
 
   try {
-    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Bookings")
+    const sentFrom = new Sender(FROM_EMAIL, "Pingability")
     const recipients = [new Recipient(customerEmail, customerName)]
 
     const emailParams = new EmailParams()
@@ -340,7 +339,7 @@ export const sendCoachNotificationEmail = async (bookingData: {
   const { customerName, customerEmail, customerPhone, sessionCount, totalAmount, lessonType, bookingId } = bookingData
 
   try {
-    const sentFrom = new Sender("noreply@pingability.co.uk", "Pingability Bookings")
+    const sentFrom = new Sender(FROM_EMAIL, "Pingability")
     const recipients = [new Recipient("info@pingability.co.uk", "Pingability Info")]
 
     const emailParams = new EmailParams()
