@@ -8,8 +8,6 @@ import Image from 'next/image'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
-const ORIGINAL_PRICE = 29
-
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -371,10 +369,10 @@ export default function Contact() {
                       className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
                     >
                     <option value="" disabled className="text-[#05325c]">Select an option...</option>
-                    <option value="general">General Inquiry</option>
+                    <option value="general">General Enquiry</option>
                     <option value="single">Single Lesson (£{PRICING.single})</option>
-                    <option value="package_3">3-Lesson Package (£{PRICING.package_3} *Save £{ORIGINAL_PRICE * 3 - PRICING.package_3}*)</option>
-                    <option value="package_5">5-Lesson Package (£{PRICING.package_5} *Save £{ORIGINAL_PRICE * 5 - PRICING.package_5}*)</option>
+                    <option value="package_3">3-Lesson Package (£{PRICING.package_3} *Save £{PRICING.single * 3 - PRICING.package_3}*)</option>
+                    <option value="package_5">5-Lesson Package (£{PRICING.package_5} *Save £{PRICING.single * 5 - PRICING.package_5}*)</option>
                   </select>
                   <ChevronDown className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
                 </div>

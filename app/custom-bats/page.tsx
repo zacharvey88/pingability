@@ -287,7 +287,7 @@ export default function CustomBats() {
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-[#05325c]">Thank You!</h3>
                 <p className="text-[#05325c] mb-6">
-                  We&apos;ve received your inquiry and will get back to you soon via your preferred consultation method.
+                  We&apos;ve received your enquiry and will get back to you soon via your preferred consultation method.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
@@ -481,7 +481,7 @@ export default function CustomBats() {
                     ) : (
                       <>
                         <Send className="w-5 h-5" />
-                        Send Inquiry
+                        Send Enquiry
                       </>
                     )}
                   </button>

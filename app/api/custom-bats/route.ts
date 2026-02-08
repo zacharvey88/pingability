@@ -6,7 +6,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, email, phone, message, consultationType, playingStyle } = body
 
-    // Validate required fields
     if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -14,7 +13,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Send email notification
     await sendCustomBatEmail({
       name,
       email,
@@ -25,13 +23,12 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json(
-      { message: 'Custom bat inquiry submitted successfully' },
       { status: 200 }
     )
   } catch (error) {
     console.error('Custom bat API error:', error)
     return NextResponse.json(
-      { error: 'Failed to send inquiry. Please try again.' },
+      { error: 'Failed to send. Please try again.' },
       { status: 500 }
     )
   }

@@ -52,7 +52,7 @@ export default function Pricing() {
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {packages.map((pkg, index) => {
             const price = PRICING[pkg.type]
-            const originalPrice = 29
+            const originalPrice = PRICING.single
             const savings = pkg.type === 'single' ? 0 : 
               pkg.type === 'package_3' ? originalPrice * 3 - price :
               originalPrice * 5 - price

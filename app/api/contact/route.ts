@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { sendContactEmail } from '@/lib/mailersend'
+import { sendCoachingEmail } from '@/lib/mailersend'
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { name, email, phone, message, contactMethod, hearAbout, packageType, startDate, skillLevel } = body
 
-    // Validate required fields
     if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -14,8 +13,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Send email notification
-    await sendContactEmail({
+    await sendCoachingEmail({
       name,
       email,
       phone: phone,
@@ -28,7 +26,6 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json(
-      { message: 'Contact request submitted successfully' },
       { status: 200 }
     )
   } catch (error: any) {
@@ -39,7 +36,7 @@ export async function POST(request: NextRequest) {
       response: error?.response
     })
     return NextResponse.json(
-      { error: 'Failed to send contact request. Please try again.' },
+      { error: 'Failed to send. Please try again.' },
       { status: 500 }
     )
   }
