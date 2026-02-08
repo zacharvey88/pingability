@@ -89,8 +89,8 @@ export default function Pricing() {
                     <div className="flex items-baseline">
                       <span className="text-4xl font-bold text-[#05325c]">£{price}</span>
                       {pkg.type !== 'single' && (
-                        <span className="text-lg text-[#05325c] ml-2">
-                          (was £{originalPrice * (pkg.type === 'package_3' ? 3 : 5)})
+                        <span className="text-lg line-through ml-2" style={{ color: 'hsl(0, 55%, 38%)' }}>
+                          £{originalPrice * (pkg.type === 'package_3' ? 3 : 5)}
                         </span>
                       )}
                     </div>
