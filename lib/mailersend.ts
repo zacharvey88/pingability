@@ -20,7 +20,6 @@ const getMailerSend = (): MailerSend => {
 
 const FROM_EMAIL = process.env.MAILERSEND_FROM_EMAIL ?? "noreply@pingability.co.uk"
 const RECIPIENT_EMAIL = process.env.MAILERSEND_RECIPIENT_EMAIL ?? "alex.bashforth78@gmail.com"
-const RECIPIENT_NAME = process.env.MAILERSEND_RECIPIENT_NAME ?? "Alex"
 
 export const sendCoachingEmail = async (formData: {
   name: string
@@ -49,7 +48,7 @@ export const sendCoachingEmail = async (formData: {
 
   try {
     const sentFrom = new Sender(FROM_EMAIL, "Pingability")
-    const recipients = [new Recipient(RECIPIENT_EMAIL, RECIPIENT_NAME)]
+    const recipients = [new Recipient(RECIPIENT_EMAIL)]
 
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
@@ -135,17 +134,17 @@ export const sendCustomBatEmail = async (formData: {
   
   try {
     const sentFrom = new Sender(FROM_EMAIL, "Pingability")
-    const recipients = [new Recipient(RECIPIENT_EMAIL, RECIPIENT_NAME)]
+    const recipients = [new Recipient(RECIPIENT_EMAIL)]
 
     const emailParams = new EmailParams()
       .setFrom(sentFrom)
       .setTo(recipients)
       .setReplyTo(new Sender(email, name))
-      .setSubject(`🏓 Custom Bat Enquiry from ${name}`)
+      .setSubject(`🏓 Custom Bat Enquiry`)
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
-            🏓 Custom Bat Enquiry
+            🏓 Custom Bat Enquiry from ${name}
           </h2>
           
           <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
