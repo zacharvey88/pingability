@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { Check, Star, User, Target, Gamepad2, Calendar, BarChart3, Trophy } from 'lucide-react'
 import { PRICING, PackageType } from '@/lib/pricing'
+import { scrollDocumentToSection } from '@/lib/scrollSections'
 
 export default function Pricing() {
   
@@ -40,10 +41,10 @@ export default function Pricing() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#111111] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
             Lesson Packages
           </h2>
-          <p className="text-xl text-[#05325c] max-w-sm mx-auto mb-8 sm:max-w-3xl">
+          <p className="text-xl text-[#111111] max-w-sm mx-auto mb-8 sm:max-w-3xl">
             Choose the perfect package for your table tennis journey
           </p>
         </motion.div>
@@ -70,7 +71,7 @@ export default function Pricing() {
               >
                 {pkg.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-[#05325c] text-white px-4 py-1 rounded-full flex items-center gap-1">
+                    <div className="bg-[#A4041F] text-white px-4 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-4 h-4" />
                       <span className="text-sm font-semibold">Most Popular</span>
                     </div>
@@ -78,16 +79,16 @@ export default function Pricing() {
                 )}
 
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-[#05325c] mb-2">
+                  <h3 className="text-2xl font-bold text-[#111111] mb-2">
                     {pkg.name}
                   </h3>
-                  <p className="text-[#05325c] mb-6">
+                  <p className="text-[#111111] mb-6">
                     {pkg.description}
                   </p>
 
                   <div className="mb-6">
                     <div className="flex items-baseline">
-                      <span className="text-4xl font-bold text-[#05325c]">£{price}</span>
+                      <span className="text-4xl font-bold text-[#111111]">£{price}</span>
                       {pkg.type !== 'single' && (
                         <span className="text-lg line-through ml-2" style={{ color: 'hsl(0, 55%, 38%)' }}>
                           £{originalPrice * (pkg.type === 'package_3' ? 3 : 5)}
@@ -105,7 +106,7 @@ export default function Pricing() {
                     {pkg.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center">
                         <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                        <span className="text-[#05325c]">{feature}</span>
+                        <span className="text-[#111111]">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -116,16 +117,12 @@ export default function Pricing() {
                       sessionStorage.setItem('selectedPackage', pkg.type)
                       // Dispatch custom event to notify Contact component
                       window.dispatchEvent(new Event('packageSelected'))
-                      // Scroll to contact form
-                      const contactSection = document.getElementById('contact')
-                      if (contactSection) {
-                        contactSection.scrollIntoView({ behavior: 'smooth' })
-                      }
+                      scrollDocumentToSection('contact', 'smooth', { contactMode: 'form' })
                     }}
                     className={`w-full py-3 px-6 rounded-full font-semibold transition-all cursor-pointer ${
                       pkg.popular
-                        ? 'bg-[#05325c] text-white hover:bg-[#1ac2ab]'
-                        : 'bg-[#05325c] text-white hover:bg-[#1ac2ab]'
+                        ? 'bg-[#A4041F] text-white hover:bg-[#111111]'
+                        : 'bg-[#A4041F] text-white hover:bg-[#111111]'
                     }`}
                   >
                     Select this package
@@ -145,10 +142,10 @@ export default function Pricing() {
           className="mt-32"
         >
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-[#05325c] mb-4 font-display max-w-sm mx-auto sm:max-w-none">
+            <h3 className="text-3xl md:text-4xl font-bold text-[#111111] mb-4 font-display max-w-sm mx-auto sm:max-w-none">
               What&apos;s Included in Every Lesson
             </h3>
-            <p className="text-lg text-[#05325c] max-w-sm mx-auto sm:max-w-2xl">
+            <p className="text-lg text-[#111111] max-w-sm mx-auto sm:max-w-2xl">
               Everything you need for an exceptional table tennis learning experience
             </p>
           </div>
@@ -194,13 +191,13 @@ export default function Pricing() {
                 viewport={{ once: true }}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200 max-w-sm mx-auto sm:max-w-none"
               >
-                <div className="w-12 h-12 bg-[#e6f7f5] rounded-lg flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-[#1ac2ab]" />
+                <div className="w-12 h-12 bg-[#FDF2F2] rounded-lg flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-[#A4041F]" />
                 </div>
-                <h4 className="text-lg font-semibold text-[#05325c] mb-2">
+                <h4 className="text-lg font-semibold text-[#111111] mb-2">
                   {item.title}
                 </h4>
-                <p className="text-[#05325c] text-sm leading-relaxed">
+                <p className="text-[#111111] text-sm leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>

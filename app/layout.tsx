@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Outfit, JetBrains_Mono } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono, Hammersmith_One } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import BackToTop from "@/components/BackToTop";
@@ -10,15 +10,15 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const hammersmithOne = Hammersmith_One({
+  variable: "--font-hammersmith-one",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.variable} ${outfit.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${hammersmithOne.variable} antialiased`}
       >
         {children}
         <CookieBanner />

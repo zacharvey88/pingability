@@ -164,7 +164,7 @@ export default function CustomBats() {
       <Header />
       
       {/* Features Section */}
-      <section id="features" className="pt-40 pb-20 bg-gradient-to-br from-[#05325c] to-[#1ac2ab] text-white relative overflow-hidden">
+      <section id="features" className="pt-40 pb-20 bg-gradient-to-br from-[#111111] via-[#A4041F] to-[#111111] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 pointer-events-none">
           <div 
             className="absolute top-0 left-0 w-full h-full dot-pattern"
@@ -199,13 +199,13 @@ export default function CustomBats() {
                 transition={{ duration: 0.6, delay: mounted ? index * 0.1 : 0 }}
                 className="text-center p-6 bg-white/95 backdrop-blur-sm rounded-xl hover:shadow-xl hover:scale-105 transition-all max-w-sm mx-auto sm:max-w-none"
               >
-                <div className="w-16 h-16 bg-[#e6f7f5] rounded-full flex items-center justify-center mx-auto mb-4">
-                  <feature.icon className="w-8 h-8 text-[#1ac2ab]" />
+                <div className="w-16 h-16 bg-[#FDF2F2] rounded-full flex items-center justify-center mx-auto mb-4">
+                  <feature.icon className="w-8 h-8 text-[#A4041F]" />
                 </div>
-                <h3 className="text-xl font-semibold text-[#05325c] mb-3">
+                <h3 className="text-xl font-semibold text-[#111111] mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-[#05325c]">
+                <p className="text-[#111111]">
                   {feature.description}
                 </p>
               </motion.div>
@@ -223,10 +223,10 @@ export default function CustomBats() {
             transition={{ duration: 0.8, delay: mounted ? 0.3 : 0 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#111111] mb-6 font-display max-w-sm mx-auto sm:max-w-none">
               How It Works
             </h2>
-            <p className="text-xl text-[#05325c] max-w-sm mx-auto sm:max-w-5xl md:max-w-6xl">
+            <p className="text-xl text-[#111111] max-w-sm mx-auto sm:max-w-5xl md:max-w-6xl">
               From consultation to delivery, we ensure your custom bat is perfect for your game
             </p>
           </motion.div>
@@ -240,17 +240,17 @@ export default function CustomBats() {
                 transition={{ duration: 0.6, delay: mounted ? 0.4 + index * 0.1 : 0 }}
                 className="text-center bg-white rounded-xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow relative max-w-sm mx-auto sm:max-w-none"
               >
-                <div className="w-16 h-16 bg-[#05325c] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                <div className="w-16 h-16 bg-[#111111] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
                   {step.step}
                 </div>
-                <h3 className="text-xl font-semibold text-[#05325c] mb-3">
+                <h3 className="text-xl font-semibold text-[#111111] mb-3">
                   {step.title}
                 </h3>
-                <p className="text-[#05325c]">
+                <p className="text-[#111111]">
                   {step.description}
                 </p>
                 {index < process.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 w-8 h-0.5 bg-[#1ac2ab]" style={{ left: 'calc(100% + 1rem - 1rem)' }}></div>
+                  <div className="hidden lg:block absolute top-1/2 w-8 h-0.5 bg-[#A4041F]" style={{ left: 'calc(100% + 1rem - 1rem)' }}></div>
                 )}
               </motion.div>
             ))}
@@ -259,7 +259,7 @@ export default function CustomBats() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 text-[#05325c]">
+      <section id="contact" className="py-20 text-[#111111]">
         <div className="container mx-auto px-6 sm:px-4">
           <motion.div
             initial={false}
@@ -270,7 +270,7 @@ export default function CustomBats() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 font-display">
               Ready to Order Your Custom Bat?
             </h2>
-            <p className="text-xl text-[#05325c] max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-[#111111] max-w-3xl mx-auto mb-8">
               Book a free consultation discuss your playing style and create the perfect bat for your game
             </p>
           </motion.div>
@@ -282,16 +282,16 @@ export default function CustomBats() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="bg-white rounded-2xl p-8 text-center shadow-lg"
               >
-                <div className="w-16 h-16 bg-[#1ac2ab] rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-[#A4041F] rounded-full flex items-center justify-center mx-auto mb-4">
                   <Check className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-[#05325c]">Thank You!</h3>
-                <p className="text-[#05325c] mb-6">
+                <h3 className="text-2xl font-bold mb-4 text-[#111111]">Thank You!</h3>
+                <p className="text-[#111111] mb-6">
                   We&apos;ve received your enquiry and will get back to you soon via your preferred consultation method.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="bg-[#1ac2ab] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#05325c] transition-colors"
+                  className="bg-[#A4041F] text-white px-6 py-2 rounded-full font-semibold hover:bg-[#111111] transition-colors"
                 >
                   Send Another Message
                 </button>
@@ -307,14 +307,14 @@ export default function CustomBats() {
                 <div className="space-y-6">
                   {/* Consultation Type Selection */}
                   <div>
-                    <label htmlFor="consultationType" className="block text-sm font-semibold mb-2 text-[#05325c]">
+                    <label htmlFor="consultationType" className="block text-sm font-semibold mb-2 text-[#111111]">
                       Preferred Consultation Method *
                     </label>
                     <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-4">
                       <label className={`cursor-pointer rounded-xl p-4 border-2 transition-all ${
                         formData.consultationType === 'email' 
-                          ? 'border-[#1ac2ab] bg-[#e6f7f5]' 
-                          : 'border-gray-300 hover:border-[#1ac2ab]'
+                          ? 'border-[#A4041F] bg-[#FDF2F2]' 
+                          : 'border-gray-300 hover:border-[#A4041F]'
                       }`}>
                         <input
                           type="radio"
@@ -326,14 +326,14 @@ export default function CustomBats() {
                           required
                         />
                         <div className="flex flex-col items-center">
-                          <Mail className={`w-6 h-6 mb-2 ${formData.consultationType === 'email' ? 'text-[#1ac2ab]' : 'text-[#05325c]'}`} />
-                          <span className={`text-sm font-medium ${formData.consultationType === 'email' ? 'text-[#05325c]' : 'text-[#05325c]'}`}>Email</span>
+                          <Mail className={`w-6 h-6 mb-2 ${formData.consultationType === 'email' ? 'text-[#A4041F]' : 'text-[#111111]'}`} />
+                          <span className={`text-sm font-medium ${formData.consultationType === 'email' ? 'text-[#111111]' : 'text-[#111111]'}`}>Email</span>
                         </div>
                       </label>
                       <label className={`cursor-pointer rounded-xl p-4 border-2 transition-all ${
                         formData.consultationType === 'phone' 
-                          ? 'border-[#1ac2ab] bg-[#e6f7f5]' 
-                          : 'border-gray-300 hover:border-[#1ac2ab]'
+                          ? 'border-[#A4041F] bg-[#FDF2F2]' 
+                          : 'border-gray-300 hover:border-[#A4041F]'
                       }`}>
                         <input
                           type="radio"
@@ -345,14 +345,14 @@ export default function CustomBats() {
                           required
                         />
                         <div className="flex flex-col items-center">
-                          <Phone className={`w-6 h-6 mb-2 ${formData.consultationType === 'phone' ? 'text-[#1ac2ab]' : 'text-[#05325c]'}`} />
-                          <span className={`text-sm font-medium ${formData.consultationType === 'phone' ? 'text-[#05325c]' : 'text-[#05325c]'}`}>Phone</span>
+                          <Phone className={`w-6 h-6 mb-2 ${formData.consultationType === 'phone' ? 'text-[#A4041F]' : 'text-[#111111]'}`} />
+                          <span className={`text-sm font-medium ${formData.consultationType === 'phone' ? 'text-[#111111]' : 'text-[#111111]'}`}>Phone</span>
                         </div>
                       </label>
                       <label className={`cursor-pointer rounded-xl p-4 border-2 transition-all ${
                         formData.consultationType === 'in-person' 
-                          ? 'border-[#1ac2ab] bg-[#e6f7f5]' 
-                          : 'border-gray-300 hover:border-[#1ac2ab]'
+                          ? 'border-[#A4041F] bg-[#FDF2F2]' 
+                          : 'border-gray-300 hover:border-[#A4041F]'
                       }`}>
                         <input
                           type="radio"
@@ -364,8 +364,8 @@ export default function CustomBats() {
                           required
                         />
                         <div className="flex flex-col items-center">
-                          <MapPin className={`w-6 h-6 mb-2 ${formData.consultationType === 'in-person' ? 'text-[#1ac2ab]' : 'text-[#05325c]'}`} />
-                          <span className={`text-sm font-medium ${formData.consultationType === 'in-person' ? 'text-[#05325c]' : 'text-[#05325c]'}`}>In-Person</span>
+                          <MapPin className={`w-6 h-6 mb-2 ${formData.consultationType === 'in-person' ? 'text-[#A4041F]' : 'text-[#111111]'}`} />
+                          <span className={`text-sm font-medium ${formData.consultationType === 'in-person' ? 'text-[#111111]' : 'text-[#111111]'}`}>In-Person</span>
                         </div>
                       </label>
                     </div>
@@ -379,7 +379,7 @@ export default function CustomBats() {
 
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block text-sm font-semibold mb-2 text-[#05325c]">
+                    <label htmlFor="name" className="block text-sm font-semibold mb-2 text-[#111111]">
                       Name *
                     </label>
                     <input
@@ -389,13 +389,13 @@ export default function CustomBats() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] placeholder-gray-400"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] placeholder-gray-400"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block text-sm font-semibold mb-2 text-[#05325c]">
+                    <label htmlFor="email" className="block text-sm font-semibold mb-2 text-[#111111]">
                       Email *
                     </label>
                     <input
@@ -406,7 +406,7 @@ export default function CustomBats() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] placeholder-gray-400 ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] placeholder-gray-400 ${
                         errors.email ? 'border-red-500' : 'border-gray-300'
                       }`}
                     />
@@ -415,7 +415,7 @@ export default function CustomBats() {
 
                   {/* Phone */}
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold mb-2 text-[#05325c]">
+                    <label htmlFor="phone" className="block text-sm font-semibold mb-2 text-[#111111]">
                       Phone *
                     </label>
                     <input
@@ -426,7 +426,7 @@ export default function CustomBats() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       required
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] placeholder-gray-400 ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] placeholder-gray-400 ${
                         errors.phone ? 'border-red-500' : 'border-gray-300'
                       }`}
                     />
@@ -435,7 +435,7 @@ export default function CustomBats() {
 
                   {/* Playing Style */}
                   <div className="relative">
-                    <label htmlFor="playingStyle" className="block text-sm font-semibold mb-2 text-[#05325c]">
+                    <label htmlFor="playingStyle" className="block text-sm font-semibold mb-2 text-[#111111]">
                       Playing Style / Preferences
                     </label>
                     <select
@@ -443,7 +443,7 @@ export default function CustomBats() {
                       name="playingStyle"
                       value={formData.playingStyle}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 pl-4 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] appearance-none cursor-pointer"
+                      className="w-full px-4 py-3 pl-4 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] appearance-none cursor-pointer"
                     >
                       <option value="" className="bg-white">Select your playing style</option>
                       <option value="offensive" className="bg-white">Offensive / Attacking</option>
@@ -451,12 +451,12 @@ export default function CustomBats() {
                       <option value="all-around" className="bg-white">All-Around</option>
                       <option value="not-sure" className="bg-white">Not Sure / Need Advice</option>
                     </select>
-                    <ChevronDown className="w-5 h-5 text-[#05325c] absolute right-4 bottom-3 pointer-events-none" />
+                    <ChevronDown className="w-5 h-5 text-[#111111] absolute right-4 bottom-3 pointer-events-none" />
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2 text-[#05325c]">
+                    <label htmlFor="message" className="block text-sm font-semibold mb-2 text-[#111111]">
                       Requirements
                     </label>
                     <textarea
@@ -465,7 +465,7 @@ export default function CustomBats() {
                       value={formData.message}
                       onChange={handleChange}
                       rows={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] placeholder-gray-400 resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] placeholder-gray-400 resize-none"
                       placeholder="Tell us about your playing style, preferences, goals, or any questions you have..."
                     />
                   </div>
@@ -474,7 +474,7 @@ export default function CustomBats() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#1ac2ab] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed booking-cursor flex items-center justify-center gap-2"
+                    className="w-full bg-[#A4041F] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111111] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed booking-cursor flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>Sending...</>

@@ -41,23 +41,24 @@ export default function About() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
-            Meet Alex
+          <h2 className="text-4xl md:text-5xl font-bold text-[#111111] mb-6 font-display">
+            Meet Your Coach
           </h2>
-            <p className="text-xl md:text-2xl text-[#05325c] mb-6 italic font-medium border-l-4 border-[#1ac2ab] pl-6 py-1">
+            <p className="text-xl md:text-2xl text-[#111111] mb-6 italic font-medium border-l-4 border-[#A4041F] pl-6 py-1">
               &quot;Alex is a dedicated table tennis coach with a passion for helping players of all levels&quot;
             </p>
-            <div className="space-y-4 text-[#05325c]">
+            <div className="space-y-4 text-[#111111]">
               <p>
-                Alex&apos;s table tennis journey began in his teens at the club here in Manchester, where he first 
-                fell in love with the sport. After developing his skills locally, he went off to university where he 
+                Alex&apos;s table tennis journey began here in Manchester, where he first fell in love with the sport. 
+                He developed his skills over a few years before taking on the role of head coach at Keele University during his studies. 
                 served as head coach at Keele University Table Tennis Club for 3 years, running the club and 
-                gaining his coaching certification with Table Tennis England.
+                gaining his coaching accreditation with Table Tennis England as a level 1 session coach and level 2 lead coach.
               </p>
               <p>
                 Now he&apos;s back where it all started, returning to coach at the very club that introduced him to 
                 table tennis. This full-circle journey has given him a deep understanding of both the technical 
-                aspects of coaching and the importance of creating a welcoming community for players of all levels.
+                aspects of coaching and the importance of creating a welcoming community for players of all levels. 
+                Alex is also DBS checked and CPD certified to work with children.
               </p>
               <p>
                 At St Matthew&apos;s Community Centre in Stretford, you&apos;ll receive professional coaching in a
@@ -108,13 +109,13 @@ export default function About() {
               viewport={{ once: true }}
               className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow max-w-sm mx-auto sm:max-w-none"
             >
-              <div className="w-16 h-16 bg-[#e6f7f5] rounded-full flex items-center justify-center mx-auto mb-4">
-                <feature.icon className="w-8 h-8 text-blue-600" />
+              <div className="w-16 h-16 bg-[#FDF2F2] rounded-full flex items-center justify-center mx-auto mb-4">
+                <feature.icon className="w-8 h-8 text-[#A4041F]" />
               </div>
-              <h4 className="text-xl font-semibold text-[#05325c] mb-2">
+              <h4 className="text-xl font-semibold text-[#111111] mb-2">
                 {feature.title}
               </h4>
-              <p className="text-[#05325c]">
+              <p className="text-[#111111]">
                 {feature.description}
               </p>
             </motion.div>

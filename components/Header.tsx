@@ -1,235 +1,281 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { Menu, X, Instagram, Youtube } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import Image from 'next/image'
+import { scrollDocumentToSection } from '@/lib/scrollSections'
+function useIsDesktopLg() {
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const update = () => setIsDesktop(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  return isDesktop
+}
+
+const NAV_LINK_CLASS =
+  'block rounded-lg px-3 py-3 text-left text-[#111111] transition-colors duration-200 ease-out hover:bg-black/[0.06] hover:text-[#A4041F]'
+
+const MENU_TOGGLE_CLASS =
+  'flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-[#111111] shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-colors hover:bg-white hover:ring-black/10'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
+  const isDesktop = useIsDesktopLg()
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current)
+      closeTimerRef.current = null
+    }
+  }, [])
+
+  const scheduleCloseDesktop = useCallback(() => {
+    if (!isDesktop) return
+    clearCloseTimer()
+    closeTimerRef.current = setTimeout(() => {
+      setIsMenuOpen(false)
+      closeTimerRef.current = null
+    }, 180)
+  }, [isDesktop, clearCloseTimer])
+
+  const openDesktopMenu = useCallback(() => {
+    if (!isDesktop) return
+    clearCloseTimer()
+    setIsMenuOpen(true)
+  }, [isDesktop, clearCloseTimer])
+
+  // Lock scroll without overflow:hidden alone — that often jumps the page (e.g. to top / "home").
+  useEffect(() => {
+    if (!(isMenuOpen && !isDesktop)) {
+      return
+    }
+    const scrollY = window.scrollY
+    document.body.style.position = 'fixed'
+    document.body.style.top = `-${scrollY}px`
+    document.body.style.left = '0'
+    document.body.style.right = '0'
+    document.body.style.width = '100%'
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.left = ''
+      document.body.style.right = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      window.scrollTo(0, scrollY)
+    }
+  }, [isMenuOpen, isDesktop])
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMenuOpen(false)
     }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
+
+  useEffect(() => {
+    return () => clearCloseTimer()
+  }, [clearCloseTimer])
 
   // Handle scroll to section after navigation
   useEffect(() => {
     const hash = window.location.hash.substring(1)
     if (hash && pathname === '/') {
-      // Small delay to ensure page is rendered
       setTimeout(() => {
-        const element = document.getElementById(hash)
-        if (element) {
-          const headerHeight = 80
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-          const offsetPosition = elementPosition - headerHeight
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
-        }
+        scrollDocumentToSection(hash, 'smooth')
       }, 100)
     }
   }, [pathname])
 
   const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // Handle hash links - navigate to home page if needed, then scroll to section
     if (href.startsWith('/#') || href.startsWith('#')) {
       e.preventDefault()
       const hash = href.includes('#') ? href.split('#')[1] : ''
-      
-      // Always navigate to home page for hash links (to ensure we get the correct section)
-      // This ensures Contact link always goes to main page contact form
-      if (pathname === '/') {
-        // Already on home page, just scroll to section
-        const element = document.getElementById(hash)
-        if (element) {
-          const headerHeight = 80 // Account for fixed header
-          const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-          const offsetPosition = elementPosition - headerHeight
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          })
-        }
+      if (pathname === '/') {
+        scrollDocumentToSection(hash, 'smooth')
       } else {
-        // Not on home page, navigate to home page with hash
         router.push(`/#${hash}`)
       }
-      setIsMenuOpen(false) // Close mobile menu if open
+      setIsMenuOpen(false)
     }
   }
 
-  return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white ${
-        isScrolled
-          ? 'shadow-lg'
-          : ''
-      }`}
+  const closeMenu = () => setIsMenuOpen(false)
+
+  const toggleMenu = () => setIsMenuOpen((open) => !open)
+
+  const menuToggleIcon = (
+    <span className="relative grid h-6 w-6 shrink-0 place-items-center motion-reduce:[&>svg]:transition-none [&>svg]:pointer-events-none [&>svg]:col-start-1 [&>svg]:row-start-1">
+      <Menu
+        aria-hidden
+        className={`h-6 w-6 transition-all duration-300 ease-out ${
+          isMenuOpen ? 'scale-50 rotate-90 opacity-0' : 'scale-100 rotate-0 opacity-100'
+        }`}
+      />
+      <X
+        aria-hidden
+        className={`h-6 w-6 transition-all duration-300 ease-out ${
+          isMenuOpen ? 'scale-100 rotate-0 opacity-100' : 'scale-50 -rotate-90 opacity-0'
+        }`}
+      />
+    </span>
+  )
+
+  const menuToggleButton = (opts: { variant: 'shell' | 'drawer' }) => (
+    <button
+      type="button"
+      onClick={toggleMenu}
+      onMouseEnter={openDesktopMenu}
+      onMouseLeave={!isMenuOpen ? scheduleCloseDesktop : undefined}
+      tabIndex={opts.variant === 'shell' && isMenuOpen ? -1 : opts.variant === 'drawer' && !isMenuOpen ? -1 : 0}
+      className={MENU_TOGGLE_CLASS}
+      aria-expanded={isMenuOpen}
+      aria-label={
+        opts.variant === 'drawer' && isMenuOpen
+          ? 'Close menu'
+          : isDesktop
+            ? 'Menu'
+            : 'Open menu'
+      }
     >
-      <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <Image 
-              src="/pingability-logo.png" 
-              alt="Pingability Logo" 
-              width={32}
-              height={32}
-              className="h-8 w-auto"
-            />
-            <span className="text-xl font-bold transition-colors text-[#05325c]">
-              Pingability
-            </span>
-          </Link>
+      {menuToggleIcon}
+    </button>
+  )
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <Link
-              href="/"
-              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
+  const menuBody = (
+    <div className="flex flex-1 flex-col gap-1 overflow-y-auto px-3 pb-4 pt-2">
+        <Link
+          href="/"
+          onClick={closeMenu}
+          className={NAV_LINK_CLASS}
+        >
+          Home
+        </Link>
+        <Link
+          href="/#about"
+          onClick={(e) => {
+            handleHashClick(e, '/#about')
+          }}
+          className={NAV_LINK_CLASS}
+        >
+          About
+        </Link>
+        <Link
+          href="/#pricing"
+          onClick={(e) => {
+            handleHashClick(e, '/#pricing')
+          }}
+          className={NAV_LINK_CLASS}
+        >
+          Pricing
+        </Link>
+        <Link
+          href="/#testimonials"
+          onClick={(e) => {
+            handleHashClick(e, '/#testimonials')
+          }}
+          className={NAV_LINK_CLASS}
+        >
+          Testimonials
+        </Link>
+        <Link
+          href="/#contact"
+          onClick={(e) => {
+            handleHashClick(e, '/#contact')
+          }}
+          className={NAV_LINK_CLASS}
+        >
+          Contact
+        </Link>
+        <Link
+          href="/custom-bats"
+          onClick={closeMenu}
+          className={NAV_LINK_CLASS}
+        >
+          Custom Bats
+        </Link>
+        <div className="mt-6 border-t border-gray-100 pt-5">
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide text-gray-500">
+            Follow
+          </p>
+          <div className="flex gap-3">
+            <a
+              href="https://instagram.com/pingability"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A4041F] text-white transition-colors hover:bg-[#111111] hover:text-white"
+              aria-label="Pingability on Instagram"
             >
-              Home
-            </Link>
-            <Link
-              href="/#about"
-              onClick={(e) => handleHashClick(e, '/#about')}
-              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
+              <Instagram className="h-5 w-5 transition-colors" />
+            </a>
+            <a
+              href="https://www.youtube.com/@pingability"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A4041F] text-white transition-colors hover:bg-[#111111] hover:text-white"
+              aria-label="Pingability on YouTube"
             >
-              About
-            </Link>
-            <Link
-              href="/#pricing"
-              onClick={(e) => handleHashClick(e, '/#pricing')}
-              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/#testimonials"
-              onClick={(e) => handleHashClick(e, '/#testimonials')}
-              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
-            >
-              Testimonials
-            </Link>
-            <Link
-              href="/#contact"
-              onClick={(e) => handleHashClick(e, '/#contact')}
-              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/custom-bats"
-              className="transition-colors text-[#05325c] hover:text-[#1ac2ab]"
-            >
-              Custom Bats
-            </Link>
-            <Link
-              href="/#pricing"
-              onClick={(e) => handleHashClick(e, '/#pricing')}
-              className="booking-cursor bg-[#1ac2ab] text-white px-6 py-2 rounded-full hover:bg-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Book Now
-            </Link>
+              <Youtube className="h-5 w-5 transition-colors" />
+            </a>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-[#05325c]" />
-            ) : (
-              <Menu className="w-6 h-6 text-[#05325c]" />
-            )}
-          </button>
         </div>
+    </div>
+  )
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-4 py-4 border-t border-gray-200 bg-white -mx-4 px-4">
-            <div className="flex flex-col space-y-4">
-              <Link
-                href="/"
-                onClick={() => setIsMenuOpen(false)}
-                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
-              >
-                Home
-              </Link>
-              <Link
-                href="/#about"
-                onClick={(e) => {
-                  handleHashClick(e, '/#about')
-                  setIsMenuOpen(false)
-                }}
-                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
-              >
-                About
-              </Link>
-              <Link
-                href="/#pricing"
-                onClick={(e) => {
-                  handleHashClick(e, '/#pricing')
-                  setIsMenuOpen(false)
-                }}
-                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/#testimonials"
-                onClick={(e) => {
-                  handleHashClick(e, '/#testimonials')
-                  setIsMenuOpen(false)
-                }}
-                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="/#contact"
-                onClick={(e) => {
-                  handleHashClick(e, '/#contact')
-                  setIsMenuOpen(false)
-                }}
-                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
-              >
-                Contact
-              </Link>
-              <Link
-                href="/custom-bats"
-                className="transition-colors text-left text-[#05325c] hover:text-[#1ac2ab]"
-              >
-                Custom Bats
-              </Link>
-              <Link
-                href="/#pricing"
-                onClick={(e) => {
-                  handleHashClick(e, '/#pricing')
-                  setIsMenuOpen(false)
-                }}
-                className="booking-cursor bg-gradient-to-r from-[#05325c] to-[#1ac2ab] text-white px-3 py-1.5 rounded-full hover:from-[#05325c] hover:to-[#1ac2ab] transition-all duration-300 shadow-md hover:shadow-lg text-center text-sm w-fit"
-              >
-                Book Now
-              </Link>
-            </div>
-          </div>
-        )}
+  return (
+    <>
+      {/* Trigger — hidden while menu is open */}
+      <div
+        className={`fixed left-0 top-0 z-[100] p-4 transition-opacity duration-200 ${
+          isMenuOpen ? 'pointer-events-none opacity-0' : 'opacity-100'
+        }`}
+        aria-hidden={isMenuOpen}
+      >
+        {menuToggleButton({ variant: 'shell' })}
+      </div>
+
+      {/* Backdrop: dims page when menu is open (click/tap outside to close) */}
+      {isMenuOpen && (
+        <button
+          type="button"
+          className="fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm"
+          aria-label="Close menu"
+          onClick={closeMenu}
+        />
+      )}
+
+      <nav
+        aria-label="Site navigation"
+        className={`fixed left-0 top-0 z-[95] flex h-full w-[min(100%,20rem)] max-w-[85vw] flex-col border-r border-white/50 bg-white/82 shadow-2xl backdrop-blur-xl backdrop-saturate-150 transition-transform duration-300 ease-out ${
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full pointer-events-none'
+        }`}
+        aria-hidden={!isMenuOpen}
+        onMouseEnter={() => {
+          if (isDesktop) clearCloseTimer()
+        }}
+        onMouseLeave={scheduleCloseDesktop}
+      >
+        <div className="shrink-0 border-b border-gray-100 px-4 pb-3 pt-4">
+          {menuToggleButton({ variant: 'drawer' })}
+        </div>
+        {menuBody}
       </nav>
-    </header>
+    </>
   )
 }

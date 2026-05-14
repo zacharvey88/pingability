@@ -57,7 +57,7 @@ export const sendCoachingEmail = async (formData: {
       .setSubject(`🏓 New Coaching Enquiry`)
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
+          <h2 style="color: #111111; border-bottom: 2px solid #a4041f; padding-bottom: 10px;">
             Coaching Enquiry from ${name}
           </h2>
           
@@ -70,7 +70,7 @@ export const sendCoachingEmail = async (formData: {
           
           ${packageType ? `
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1ac2ab; margin-top: 0;">Lesson Details</h3>
+            <h3 style="color: #a4041f; margin-top: 0;">Lesson Details</h3>
             <p><strong>Interested In:</strong> ${lessonPackage}</p>
             ${startDate ? `<p><strong>Preferred Start Date:</strong> ${dateDisplay}</p>` : ''}
             ${skillLevel ? `<p><strong>Current Skill Level:</strong> ${skillLevel.charAt(0).toUpperCase() + skillLevel.slice(1)}</p>` : ''}
@@ -79,7 +79,7 @@ export const sendCoachingEmail = async (formData: {
 
           ${skillLevel && !packageType ? `
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1ac2ab; margin-top: 0;">Skill Level</h3>
+            <h3 style="color: #a4041f; margin-top: 0;">Skill Level</h3>
             <p><strong>Current Skill Level:</strong> ${skillLevel.charAt(0).toUpperCase() + skillLevel.slice(1)}</p>
           </div>
           ` : ''}
@@ -143,7 +143,7 @@ export const sendCustomBatEmail = async (formData: {
       .setSubject(`🏓 Custom Bat Enquiry`)
       .setHtml(`
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #05325c; border-bottom: 2px solid #1e40af; padding-bottom: 10px;">
+          <h2 style="color: #111111; border-bottom: 2px solid #a4041f; padding-bottom: 10px;">
             🏓 Custom Bat Enquiry from ${name}
           </h2>
           
@@ -156,7 +156,7 @@ export const sendCustomBatEmail = async (formData: {
           
           ${playingStyle || consultationType ? `
           <div style="background-color: #e0f2fe; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1ac2ab; margin-top: 0;">Bat Preferences</h3>
+            <h3 style="color: #a4041f; margin-top: 0;">Bat Preferences</h3>
             ${playingStyle ? `<p><strong>Playing Style:</strong> ${playingStyle.charAt(0).toUpperCase() + playingStyle.slice(1)}</p>` : ''}
             ${consultationType ? `<p><strong>Preferred Consultation Method:</strong> ${consultationType.charAt(0).toUpperCase() + consultationType.slice(1)}</p>` : ''}
           </div>

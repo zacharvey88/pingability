@@ -1,26 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { MapPin, Clock, Mail, Phone, Instagram } from 'lucide-react'
-import Image from 'next/image'
+import { MapPin, Clock, Mail, Phone, Instagram, Youtube } from 'lucide-react'
+
+import { scrollDocumentToSection } from '@/lib/scrollSections'
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const headerHeight = 80 // Account for fixed header
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset
-      const offsetPosition = elementPosition - headerHeight
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      })
-    }
+    scrollDocumentToSection(sectionId, 'smooth')
   }
 
   return (
-    <footer className="bg-[#05325c] text-white">
+    <footer className="bg-[#111111] text-white">
       <div className="container mx-auto px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
@@ -31,16 +22,7 @@ export default function Footer() {
             viewport={{ once: true }}
             className="lg:col-span-2"
           >
-            <div className="flex items-center space-x-3 mb-4">
-              <Image 
-                src="/pingability-logo.png" 
-                alt="Pingability Logo" 
-                width={32}
-                height={32}
-                className="h-8 w-auto"
-              />
-              <span className="text-2xl font-bold">Pingability</span>
-            </div>
+            <h2 className="text-2xl font-bold mb-4">Pingability</h2>
             <p className="text-gray-300 mb-6 max-w-md">
               Professional table tennis coaching in Manchester. Transform your game with Alex&apos;s 
               expert guidance and personalised training approach.
@@ -50,9 +32,18 @@ export default function Footer() {
                 href="https://instagram.com/pingability" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1ac2ab] rounded-full flex items-center justify-center hover:bg-white transition-colors group"
+                className="w-10 h-10 bg-[#A4041F] rounded-full flex items-center justify-center hover:bg-white transition-colors group"
               >
-                <Instagram className="w-5 h-5 text-white group-hover:text-[#1ac2ab] transition-colors" />
+                <Instagram className="w-5 h-5 text-white group-hover:text-[#A4041F] transition-colors" />
+              </a>
+              <a
+                href="https://www.youtube.com/@pingability"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-[#A4041F] rounded-full flex items-center justify-center hover:bg-white transition-colors group"
+                aria-label="Pingability on YouTube"
+              >
+                <Youtube className="w-5 h-5 text-white group-hover:text-[#A4041F] transition-colors" />
               </a>
             </div>
           </motion.div>
@@ -69,7 +60,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('home')}
-                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                  className="text-gray-300 hover:text-[#A4041F] transition-colors"
                 >
                   Home
                 </button>
@@ -77,7 +68,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('about')}
-                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                  className="text-gray-300 hover:text-[#A4041F] transition-colors"
                 >
                   About Alex
                 </button>
@@ -85,7 +76,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('pricing')}
-                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                  className="text-gray-300 hover:text-[#A4041F] transition-colors"
                 >
                   Pricing
                 </button>
@@ -93,7 +84,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('testimonials')}
-                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                  className="text-gray-300 hover:text-[#A4041F] transition-colors"
                 >
                   Testimonials
                 </button>
@@ -101,7 +92,7 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                  className="text-gray-300 hover:text-[#A4041F] transition-colors"
                 >
                   Contact
                 </button>
@@ -109,7 +100,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/custom-bats"
-                  className="text-gray-300 hover:text-[#1ac2ab] transition-colors"
+                  className="text-gray-300 hover:text-[#A4041F] transition-colors"
                 >
                   Custom Bats
                 </a>
@@ -127,7 +118,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Contact Info</h3>
             <div className="space-y-3">
               <div className="flex items-start">
-                <MapPin className="w-5 h-5 text-[#1ac2ab] mr-3 mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-[#A4041F] mr-3 mt-0.5 flex-shrink-0" />
                 <div className="text-sm text-gray-300">
                   <p>St Matthew&apos;s Community Centre</p>
                   <p>Chapel Lane, Stretford</p>
@@ -135,15 +126,15 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-center">
-                <Clock className="w-5 h-5 text-[#1ac2ab] mr-3 flex-shrink-0" />
+                <Clock className="w-5 h-5 text-[#A4041F] mr-3 flex-shrink-0" />
                 <p className="text-sm text-gray-300">Mon 18:00-21:00</p>
               </div>
               <div className="flex items-center">
-                <Mail className="w-5 h-5 text-[#1ac2ab] mr-3 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-[#A4041F] mr-3 flex-shrink-0" />
                 <p className="text-sm text-gray-300">info@pingability.co.uk</p>
               </div>
               <div className="flex items-center">
-                <Phone className="w-5 h-5 text-[#1ac2ab] mr-3 flex-shrink-0" />
+                <Phone className="w-5 h-5 text-[#A4041F] mr-3 flex-shrink-0" />
                 <p className="text-sm text-gray-300">+44 7432 628588</p>
               </div>
             </div>
@@ -169,17 +160,17 @@ export default function Footer() {
                   href="https://www.zacharvey.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-[#1ac2ab] hover:text-white transition-colors"
+                  className="text-[#A4041F] hover:text-white transition-colors"
                 >
                   Zac Harvey
                 </a>
               </p>
             </div>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/privacy" className="text-gray-400 hover:text-[#1ac2ab] text-sm transition-colors">
+              <a href="/privacy" className="text-gray-400 hover:text-[#A4041F] text-sm transition-colors">
                 Privacy Policy
               </a>
-              <a href="/terms" className="text-gray-400 hover:text-[#1ac2ab] text-sm transition-colors">
+              <a href="/terms" className="text-gray-400 hover:text-[#A4041F] text-sm transition-colors">
                 Terms of Service
               </a>
             </div>

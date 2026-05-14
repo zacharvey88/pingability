@@ -7,6 +7,7 @@ import { PRICING } from '@/lib/pricing'
 import Image from 'next/image'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import { scrollDocumentToSection } from '@/lib/scrollSections'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -222,15 +223,15 @@ export default function Contact() {
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Send className="w-10 h-10 text-green-500" />
             </div>
-            <h2 className="text-4xl font-bold text-[#05325c] mb-4">
+            <h2 className="text-4xl font-bold text-[#111111] mb-4">
               Thank You!
             </h2>
-            <p className="text-xl text-[#05325c] mb-8">
+            <p className="text-xl text-[#111111] mb-8">
               Your message has been sent successfully.
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="bg-[#05325c] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#1ac2ab] transition-colors"
+              className="bg-[#A4041F] text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-[#111111] transition-colors"
             >
               Send Another Message
             </button>
@@ -250,10 +251,10 @@ export default function Contact() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[#05325c] mb-6 font-display">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#111111] mb-6 font-display">
             Get In Touch
           </h2>
-          <p className="text-xl text-[#05325c] max-w-3xl mx-auto">
+          <p className="text-xl text-[#111111] max-w-3xl mx-auto">
             Ready to book? Got question? Get in touch below and I&apos;ll get back to you as soon as possible.
           </p>
         </motion.div>
@@ -289,7 +290,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-4" key={isSubmitted ? 'reset' : 'normal'}>
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-[#05325c] mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-[#111111] mb-2">
                     Full Name *
                   </label>
                   <input
@@ -299,12 +300,12 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c]"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111]"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-[#05325c] mb-2">
+                  <label htmlFor="phone" className="block text-sm font-medium text-[#111111] mb-2">
                     Phone Number *
                   </label>
                   <input
@@ -315,7 +316,7 @@ export default function Contact() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     required
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] ${
                       errors.phone ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -326,7 +327,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-[#05325c] mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-[#111111] mb-2">
                   Email Address *
                 </label>
                 <input
@@ -337,7 +338,7 @@ export default function Contact() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   required
-                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] ${
+                    className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -348,13 +349,13 @@ export default function Contact() {
 
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label htmlFor="packageType" className="block text-sm font-medium text-[#05325c]">
+                  <label htmlFor="packageType" className="block text-sm font-medium text-[#111111]">
                     Interested In *
                   </label>
                   <button
                     type="button"
-                    onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="text-xs text-[#05325c] hover:text-[#1ac2ab] hover:underline transition-colors"
+                    onClick={() => scrollDocumentToSection('pricing')}
+                    className="text-xs text-[#111111] hover:text-[#A4041F] hover:underline transition-colors"
                   >
                     Not sure? Check packages.
                   </button>
@@ -366,9 +367,9 @@ export default function Contact() {
                       value={formData.packageType}
                       onChange={handleChange}
                       required
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent appearance-none bg-white text-[#111111]"
                     >
-                    <option value="" disabled className="text-[#05325c]">Select an option...</option>
+                    <option value="" disabled className="text-[#111111]">Select an option...</option>
                     <option value="general">General Enquiry</option>
                     <option value="single">Single Lesson (£{PRICING.single})</option>
                     <option value="package_3">3-Lesson Package (£{PRICING.package_3} *Save £{PRICING.single * 3 - PRICING.package_3}*)</option>
@@ -380,7 +381,7 @@ export default function Contact() {
 
               <div className={`grid gap-4 ${formData.packageType && formData.packageType !== 'general' ? 'md:grid-cols-2' : ''}`}>
                 <div>
-                  <label htmlFor="skillLevel" className="block text-sm font-medium text-[#05325c] mb-2">
+                  <label htmlFor="skillLevel" className="block text-sm font-medium text-[#111111] mb-2">
                     Current Skill Level
                   </label>
                   <div className="relative">
@@ -389,9 +390,9 @@ export default function Contact() {
                       name="skillLevel"
                       value={formData.skillLevel}
                       onChange={handleChange}
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent appearance-none bg-white text-[#111111]"
                     >
-                      <option value="" disabled className="text-[#05325c]">Select an option...</option>
+                      <option value="" disabled className="text-[#111111]">Select an option...</option>
                       <option value="beginner">Beginner</option>
                       <option value="intermediate">Intermediate</option>
                       <option value="advanced">Advanced</option>
@@ -403,7 +404,7 @@ export default function Contact() {
 
                 {formData.packageType && formData.packageType !== 'general' && (
                   <div>
-                    <label htmlFor="startDate" className="block text-sm font-medium text-[#05325c] mb-2">
+                    <label htmlFor="startDate" className="block text-sm font-medium text-[#111111] mb-2">
                       {formData.packageType === 'single' ? 'Preferred Date' : 'Preferred Start Date'}
                     </label>
                     <DatePicker
@@ -426,7 +427,7 @@ export default function Contact() {
                       minDate={new Date()}
                       placeholderText="Select a Monday"
                       dateFormat="dd/MM/yyyy"
-                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent bg-white text-[#05325c] ${
+                      className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent bg-white text-[#111111] ${
                         errors.startDate ? 'border-red-500' : 'border-gray-300'
                       }`}
                       wrapperClassName="w-full"
@@ -439,7 +440,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-[#05325c] mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-[#111111] mb-2">
                   Message *
                 </label>
                 <textarea
@@ -449,14 +450,14 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={3}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent placeholder-gray-500 bg-white text-[#05325c]"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent placeholder-gray-500 bg-white text-[#111111]"
                   placeholder="Tell us about your table tennis experience, goals, or any questions you have..."
                 />
               </div>
 
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="contactMethod" className="block text-sm font-medium text-[#05325c] mb-2">
+                  <label htmlFor="contactMethod" className="block text-sm font-medium text-[#111111] mb-2">
                     Preferred Contact Method
                   </label>
                   <div className="relative">
@@ -465,9 +466,9 @@ export default function Contact() {
                       name="contactMethod"
                       value={formData.contactMethod}
                       onChange={handleChange}
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent appearance-none bg-white text-[#111111]"
                     >
-                      <option value="" disabled className="text-[#05325c]">Select an option...</option>
+                      <option value="" disabled className="text-[#111111]">Select an option...</option>
                       <option value="email">Email</option>
                       <option value="phone">Phone Call</option>
                       <option value="text">Text Message</option>
@@ -478,7 +479,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="hearAbout" className="block text-sm font-medium text-[#05325c] mb-2">
+                  <label htmlFor="hearAbout" className="block text-sm font-medium text-[#111111] mb-2">
                     How did you hear about us?
                   </label>
                   <div className="relative">
@@ -487,9 +488,9 @@ export default function Contact() {
                       name="hearAbout"
                       value={formData.hearAbout}
                       onChange={handleChange}
-                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1ac2ab] focus:border-transparent appearance-none bg-white text-[#05325c]"
+                      className="w-full pl-4 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A4041F] focus:border-transparent appearance-none bg-white text-[#111111]"
                     >
-                      <option value="" disabled className="text-[#05325c]">Select an option...</option>
+                      <option value="" disabled className="text-[#111111]">Select an option...</option>
                       <option value="google">Google Search</option>
                       <option value="social">Social Media</option>
                       <option value="referral">Friend/Family Referral</option>
@@ -509,7 +510,7 @@ export default function Contact() {
                 className={`w-full py-3 px-6 rounded-lg font-semibold transition-all ${
                   isSubmitting
                     ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-[#05325c] hover:bg-[#1ac2ab] text-white'
+                    : 'bg-[#A4041F] hover:bg-[#111111] text-white'
                 }`}
               >
                 {isSubmitting 

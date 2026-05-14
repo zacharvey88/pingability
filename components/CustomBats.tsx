@@ -24,7 +24,7 @@ export default function CustomBats() {
   ]
 
   return (
-    <section id="custom-bats" className="py-20 bg-gradient-to-br from-[#05325c] to-[#1ac2ab] text-white relative overflow-hidden">
+    <section id="custom-bats" className="py-20 bg-gradient-to-br from-[#111111] via-[#A4041F] to-[#111111] text-white relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-full h-full" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)',
@@ -57,13 +57,13 @@ export default function CustomBats() {
               viewport={{ once: true }}
               className="text-center p-5 bg-white/95 backdrop-blur-sm rounded-xl hover:shadow-xl hover:scale-105 transition-all"
             >
-              <div className="w-14 h-14 bg-[#e6f7f5] rounded-full flex items-center justify-center mx-auto mb-3">
-                <feature.icon className="w-7 h-7 text-[#1ac2ab]" />
+              <div className="w-14 h-14 bg-[#FDF2F2] rounded-full flex items-center justify-center mx-auto mb-3">
+                <feature.icon className="w-7 h-7 text-[#A4041F]" />
               </div>
-              <h3 className="text-lg font-semibold text-[#05325c] mb-2">
+              <h3 className="text-lg font-semibold text-[#111111] mb-2">
                 {feature.title}
               </h3>
-              <p className="text-sm text-[#05325c]">
+              <p className="text-sm text-[#111111]">
                 {feature.description}
               </p>
             </motion.div>
@@ -79,7 +79,7 @@ export default function CustomBats() {
         >
           <Link
             href="/custom-bats"
-            className="inline-block booking-cursor bg-white text-[#05325c] px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#1ac2ab] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-block booking-cursor bg-white text-[#111111] px-8 py-3 rounded-full text-lg font-semibold hover:bg-[#A4041F] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Learn More About Custom Bats
           </Link>

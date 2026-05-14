@@ -75,14 +75,14 @@ export default function TestimonialsMobile({ testimonials }: TestimonialsMobileP
             >
               <div className="bg-white rounded-2xl p-6 max-w-md mx-auto h-[300px] flex flex-col">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-[#e6f7f5] rounded-full flex items-center justify-center mr-4">
-                    <span className="text-[#1ac2ab] font-bold text-lg">
+                  <div className="w-12 h-12 bg-[#FDF2F2] rounded-full flex items-center justify-center mr-4">
+                    <span className="text-[#A4041F] font-bold text-lg">
                       {testimonial.avatar}
                     </span>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-[#05325c]">{testimonial.name}</h4>
-                    <p className="text-sm text-[#05325c]">{testimonial.age}</p>
+                    <h4 className="font-semibold text-[#111111]">{testimonial.name}</h4>
+                    <p className="text-sm text-[#111111]">{testimonial.age}</p>
                   </div>
                 </div>
 
@@ -93,7 +93,7 @@ export default function TestimonialsMobile({ testimonials }: TestimonialsMobileP
                 </div>
 
                 <div className="flex-1 flex items-start">
-                  <p className="text-[#05325c] italic">
+                  <p className="text-[#111111] italic">
                     &ldquo;{testimonial.text}&rdquo;
                   </p>
                 </div>
@@ -111,7 +111,7 @@ export default function TestimonialsMobile({ testimonials }: TestimonialsMobileP
             onClick={() => goToIndex(index)}
             className={`w-2 h-2 rounded-full transition-all ${
               index === currentIndex
-                ? 'bg-[#1ac2ab] w-8'
+                ? 'bg-[#A4041F] w-8'
                 : 'bg-gray-300'
             }`}
             aria-label={`Go to testimonial ${index + 1}`}

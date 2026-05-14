@@ -1,8 +1,10 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
+import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDown, MapPin, Clock, Users } from 'lucide-react'
+import { scrollDocumentToSection } from '@/lib/scrollSections'
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -70,7 +72,7 @@ export default function Hero() {
             width: '100%',
             height: '100%',
             minHeight: '100vh',
-            backgroundImage: 'url(/hero-video-poster.png)',
+            backgroundImage: 'url(/hero-image.jpg)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -107,9 +109,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold mb-6 font-display px-4"
+          className="mb-6 flex justify-center px-4"
         >
-          Table Tennis Coaching
+          <Image
+            src="/pingability-logo.png"
+            alt="Pingability — Table Tennis Coaching"
+            width={480}
+            height={137}
+            priority
+            className="h-auto w-[min(85vw,16.8rem)] sm:w-[min(85vw,20.4rem)] md:w-[min(85vw,24rem)]"
+          />
         </motion.h1>
         
         <motion.p
@@ -118,7 +127,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl mb-8 text-gray-100 px-4"
         >
-          Take your game to the next level with professional training sessions
+          Take your game to the next level with professional coaching
         </motion.p>
 
         <motion.div
@@ -148,14 +157,14 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <button
-            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            className="bg-white text-[#05325c] px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#e6f7f5] hover:text-[#05325c] transition-all duration-300 shadow-lg hover:shadow-xl w-[180px] sm:w-auto"
+            onClick={() => scrollDocumentToSection('pricing')}
+            className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-[#111111] transition-all duration-300 w-[180px] sm:w-auto"
           >
             View Pricing
           </button>
           <button
-            onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-            className="booking-cursor border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-white hover:text-[#05325c] transition-all duration-300 w-[180px] sm:w-auto"
+            onClick={() => scrollDocumentToSection('contact')}
+            className="booking-cursor bg-white text-[#111111] px-6 py-3 sm:px-8 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-[#A4041F] hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl w-[180px] sm:w-auto"
           >
             Book a Lesson
           </button>
@@ -170,7 +179,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
       >
         <button
-          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => scrollDocumentToSection('about')}
           className="flex flex-col items-center text-white hover:text-gray-200 transition-colors cursor-pointer group"
         >
           <motion.div
@@ -178,7 +187,7 @@ export default function Hero() {
             transition={{ duration: 2, repeat: Infinity }}
             className="flex flex-col items-center"
           >
-            <span className="text-sm mb-2">Scroll to explore</span>
+            <span className="text-sm mb-2">Scroll Down</span>
             <ArrowDown className="w-6 h-6 group-hover:scale-110 transition-transform" />
           </motion.div>
         </button>
